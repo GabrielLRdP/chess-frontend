@@ -1,15 +1,35 @@
 import { create } from "zustand";
-import { Piece } from "../domain/entities/piece/Piece";
+import { Position } from "../shared/types/global_types";
 
 type PositionState = {
-  position: Array<Piece>;
-  setPosition: (newPosition: Array<Piece>) => void;
+  initialPosition: string;
+  currentPosition: string;
+  selectedCase: Position;
+  setPosition: (newPosition: string) => void;
+  initPosition: (initialPosition: string) => void;
 };
 
-export const usePositionStore = create<PositionState>((set) => ({
-  position: [],
-  setPosition: (newPosition) =>
+export const usePositionStore = create<PositionState>((set, get) => ({
+  initialPosition: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
+  currentPosition: "",
+  selectedCase: null,
+
+  setPosition: (newPosition) => {
     set(() => ({
-      position: newPosition,
-    })),
+      currentPosition: newPosition,
+    }));
+  },
+
+  initPosition: () => {
+    const { initialPosition } = get();
+    set(() => ({
+      currentPosition: initialPosition,
+    }));
+  },
+
+  setSelectedCase: (position: Position) => {
+    set(() => ({
+      selectedCase: position,
+    }));
+  },
 }));
