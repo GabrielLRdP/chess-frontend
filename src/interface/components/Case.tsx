@@ -1,33 +1,43 @@
-import { ReactElement } from "react";
-import { Color, Position } from "../../shared/types/global_types";
-import { useSelectedCaseStore } from "../../store/useSelectedCaseStore";
+import { ReactElement } from 'react';
+import { Color } from '../../shared/types/global_types';
+import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
+import { Piece } from '../../domain/entities/piece/Piece';
+import { usePositionStore } from '../store/usePositionStore';
+import handleCaseClick from '../functions/handleCaseClick';
 
 const Case = ({
   color,
   piece,
-  position,
+  pieceObject,
+  index,
 }: {
   color: Color;
   piece: ReactElement | null;
-  position: Position;
+  pieceObject: Piece | null;
+  index: number;
 }): ReactElement => {
-  const { selectedCase, setSelectedCase } = useSelectedCaseStore();
-  const handleCaseClick = (position: Position | null) => {
-    selectedCase ? setSelectedCase(null) : setSelectedCase(position);
+  const { initialPosition, setInitialPosition } = usePositionStore();
+  const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
+  const handleClick = (piece: Piece | null) => {
+    const newPosition = handleCaseClick(
+      initialPosition,
+      selectedPiece,
+      setSelectedPiece,
+      piece,
+      index
+    );
+    setInitialPosition(newPosition);
   };
-
   return (
     <div
       className={`${
-        color === "black" ? "bg-gray-800" : "bg-red-500"
+        color === 'black' ? 'bg-gray-800' : 'bg-red-500'
       } w-10 h-10 ${
-        position === selectedCase ? "text-white" : "text-red-700"
+        piece === selectedPiece ? 'text-white' : 'text-red-700'
       }  flex items-center justify-center border border-transparent hover:border-amber-400`}
-      onClick={() => handleCaseClick(position)}
+      onClick={() => handleClick(pieceObject)}
     >
       {piece}
-      {position[0]}
-      {position[1]}
     </div>
   );
 };

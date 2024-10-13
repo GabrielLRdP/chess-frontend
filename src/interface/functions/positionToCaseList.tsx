@@ -1,9 +1,13 @@
 import { ReactElement } from "react";
 import Case from "../components/Case";
 import { Color } from "../../shared/types/global_types";
-import { toggleColor } from "../../shared/types/utils/toggleColor";
+import { toggleColor } from "../../shared/utils/toggleColor";
+import { Piece } from "../../domain/entities/piece/Piece";
 
-const useCaseList = (translatedPosition: Array<ReactElement | null>) => {
+const positionToCaselist = (
+  translatedPosition: Array<ReactElement | null>,
+  position: Array<Piece | null>
+) => {
   const caseList = [];
   let color: Color = "white";
   const casePosition = [0, 7];
@@ -12,7 +16,8 @@ const useCaseList = (translatedPosition: Array<ReactElement | null>) => {
       <Case
         color={color}
         piece={translatedPosition[i]}
-        position={[...casePosition]}
+        pieceObject={position[i]}
+        index={i}
       />
     );
     color = (i + 1) % 8 === 0 ? color : toggleColor(color);
@@ -26,4 +31,4 @@ const useCaseList = (translatedPosition: Array<ReactElement | null>) => {
   return [...caseList];
 };
 
-export default useCaseList;
+export default positionToCaselist;

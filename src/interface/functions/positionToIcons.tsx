@@ -1,5 +1,3 @@
-import { fenExpander } from "../../shared/types/utils/fenExpander";
-import { usePositionStore } from "../../store/usePositionStore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChessPawn,
@@ -10,6 +8,7 @@ import {
   faChessRook,
 } from "@fortawesome/free-solid-svg-icons";
 import { ReactElement } from "react";
+import { Board } from "../../shared/types/global_types";
 
 const blackPawn = <FontAwesomeIcon icon={faChessPawn} className="text-black" />;
 const whitePawn = <FontAwesomeIcon icon={faChessPawn} className="text-white" />;
@@ -52,31 +51,9 @@ const trad: tradType = {
   0: null,
 };
 
-export const usePositionAdapter = (): Array<ReactElement | null> => {
-  const { initialPosition } = usePositionStore();
-  const expandedCurrentPosition = fenExpander(initialPosition);
-  const translatedPosition: Array<ReactElement | null> = [];
+const positionToIcons = (initialPosition: Board): (ReactElement | null)[] =>
+  initialPosition.map((element) => (element ? trad[element.notation] : null));
 
-  expandedCurrentPosition.split("").forEach((element) => {
-    if (element !== "/") {
-      translatedPosition.push(trad[element as keyof tradType]);
-    }
-  });
-  return translatedPosition;
-};
+type tradType = Record<string, ReactElement | null>;
 
-type tradType = {
-  r: ReactElement;
-  n: ReactElement;
-  b: ReactElement;
-  q: ReactElement;
-  k: ReactElement;
-  p: ReactElement;
-  R: ReactElement;
-  N: ReactElement;
-  B: ReactElement;
-  Q: ReactElement;
-  K: ReactElement;
-  P: ReactElement;
-  0: null;
-};
+export default positionToIcons;
