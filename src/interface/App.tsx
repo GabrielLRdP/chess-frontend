@@ -1,13 +1,12 @@
-import Test from "./components/Test";
-import ChessBoard from "./components/ChessBoard";
-import "./css/main.css";
+import ChessBoard from './components/ChessBoard';
+import ChessBoardContextProvider from './context/chessBoardContext';
+import './css/main.css';
 
 function App() {
   return (
-    <>
-      <Test></Test>
+    <ChessBoardContextProvider>
       <ChessBoard />
-    </>
+    </ChessBoardContextProvider>
   );
 }
 
