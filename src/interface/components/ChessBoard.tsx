@@ -9,7 +9,7 @@ const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
   const { initialPosition, setInitialPosition } = usePositionStore();
   const defaultInitialFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
-  const { selectedPiece } = useSelectedPieceStore();
+  const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
 
   useEffect(() => {
     const icons = positionToIcons(initialPosition);
@@ -20,6 +20,7 @@ const ChessBoard = (): ReactElement => {
   const handleClick = () => {
     const pieceList = ChessBoardService.initializeBoard(defaultInitialFen);
     setInitialPosition(pieceList);
+    setSelectedPiece(null);
   };
 
   return (

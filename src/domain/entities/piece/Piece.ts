@@ -1,4 +1,4 @@
-import { Color, Position } from "../../../shared/types/global_types";
+import { Color, Position } from '../../../shared/types/global_types';
 
 export abstract class Piece {
   constructor(
@@ -6,5 +6,5 @@ export abstract class Piece {
     public position: Position,
     readonly notation: string
   ) {}
-  abstract getLegalMoves(): Array<Position>;
+  abstract getLegalMoves(position: Array<Piece | null>): Array<Position>;
 }
