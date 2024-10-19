@@ -24,7 +24,6 @@ export class Pawn extends Piece {
     if (!isThereAPiece(firstCaseInFrontPosition, position)) {
       result.push(firstCaseInFrontPosition);
     }
-    console.log(result, 'result');
 
     if (
       piecePosition[1] === startPosition &&

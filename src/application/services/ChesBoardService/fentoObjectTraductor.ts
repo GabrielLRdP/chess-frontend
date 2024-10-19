@@ -1,63 +1,63 @@
-import { King } from "../../../domain/entities/piece/pieces/Kings";
-import { Queen } from "../../../domain/entities/piece/pieces/Queen";
-import { Pawn } from "../../../domain/entities/piece/pieces/Pawn";
-import { Rook } from "../../../domain/entities/piece/pieces/Rook";
-import { Knight } from "../../../domain/entities/piece/pieces/Knight";
-import { Bishop } from "../../../domain/entities/piece/pieces/Bishop";
+import { King } from '../../../domain/entities/piece/pieces/King';
+import { Queen } from '../../../domain/entities/piece/pieces/Queen';
+import { Pawn } from '../../../domain/entities/piece/pieces/Pawn';
+import { Rook } from '../../../domain/entities/piece/pieces/Rook';
+import { Knight } from '../../../domain/entities/piece/pieces/Knight';
+import { Bishop } from '../../../domain/entities/piece/pieces/Bishop';
 
 export const fenToObjectTrad: PieceTranslation = {
   p: {
     object: Pawn,
-    color: "black",
+    color: 'black',
   },
   P: {
     object: Pawn,
-    color: "white",
+    color: 'white',
   },
   n: {
     object: Knight,
-    color: "black",
+    color: 'black',
   },
   N: {
     object: Knight,
-    color: "white",
+    color: 'white',
   },
   b: {
     object: Bishop,
-    color: "black",
+    color: 'black',
   },
   B: {
     object: Bishop,
-    color: "white",
+    color: 'white',
   },
   r: {
     object: Rook,
-    color: "black",
+    color: 'black',
   },
   R: {
     object: Rook,
-    color: "white",
+    color: 'white',
   },
   q: {
     object: Queen,
-    color: "black",
+    color: 'black',
   },
   Q: {
     object: Queen,
-    color: "white",
+    color: 'white',
   },
   k: {
     object: King,
-    color: "black",
+    color: 'black',
   },
   K: {
     object: King,
-    color: "white",
+    color: 'white',
   },
-  0: "0",
+  0: '0',
 };
 
-type PieceTranslation = Record<string, PieceDescription | "0" | null>;
+type PieceTranslation = Record<string, PieceDescription | '0' | null>;
 
 export type PieceDescription = {
   object:
@@ -67,5 +67,5 @@ export type PieceDescription = {
     | typeof Rook
     | typeof Queen
     | typeof King;
-  color: "black" | "white";
+  color: 'black' | 'white';
 };
