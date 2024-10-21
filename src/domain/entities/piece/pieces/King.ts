@@ -10,8 +10,6 @@ export class King extends Piece {
   public getLegalMoves(position: Array<Piece | null>): Array<Position> {
     const result: Position[] = [];
     const casesToCheck = [];
-    console.log(this.isInCheck(position));
-
     for (let i = -1; i < 2; i++) {
       for (let j = -1; j < 2; j++) {
         if (i !== 0 || j !== 0) {
