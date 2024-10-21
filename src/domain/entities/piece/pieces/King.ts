@@ -7,9 +7,10 @@ export class King extends Piece {
   constructor(color: Color, position: Position) {
     super(color, position, color === 'white' ? 'K' : 'k');
   }
-  getLegalMoves(position: Array<Piece | null>): Array<Position> {
+  public getLegalMoves(position: Array<Piece | null>): Array<Position> {
     const result: Position[] = [];
     const casesToCheck = [];
+    console.log(this.isInCheck(position));
 
     for (let i = -1; i < 2; i++) {
       for (let j = -1; j < 2; j++) {
@@ -30,5 +31,19 @@ export class King extends Piece {
     });
 
     return result;
+  }
+
+  public isInCheck(position: Array<Piece | null>) {
+    const adversaryColor = this.color === 'white' ? 'black' : 'white';
+
+    return position.some((element) => {
+      return (
+        element?.color === adversaryColor &&
+        element?.notation.toLowerCase() !== 'k' &&
+        element?.getLegalMoves(position).some((e) => {
+          return e[0] === this.position[0] && e[1] === this.position[1];
+        })
+      );
+    });
   }
 }
