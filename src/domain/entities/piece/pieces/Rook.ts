@@ -6,7 +6,7 @@ export class Rook extends Piece {
   constructor(color: Color, position: Position) {
     super(color, position, color === 'white' ? 'R' : 'r');
   }
-  getLegalMoves(position: Array<Piece | null>): Array<Position> {
+  getRange(position: Array<Piece | null>): Array<Position> {
     const result: Position[] = getLineLegalMoves(
       this.position,
       position,

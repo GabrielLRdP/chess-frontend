@@ -4,6 +4,7 @@ import positionToCaseList from '../functions/positionToCaseList';
 import { ChessBoardService } from '../../application/services/ChesBoardService/ChessBoardService';
 import { usePositionStore } from '../store/usePositionStore';
 import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
+import { Position } from '../../shared/types/global_types';
 
 const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
@@ -12,9 +13,13 @@ const ChessBoard = (): ReactElement => {
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
 
   useEffect(() => {
+    let legalMoves: Position[] = [];
+    if (selectedPiece) {
+      legalMoves = selectedPiece?.getLegalMoves(initialPosition);
+    }
     const icons = positionToIcons(initialPosition);
-    setCaseList(() => positionToCaseList(icons, initialPosition));
-    console.log(selectedPiece);
+    setCaseList(() => positionToCaseList(icons, initialPosition, legalMoves));
+    // console.log(selectedPiece);
   }, [initialPosition, selectedPiece]);
 
   const handleClick = () => {
@@ -24,7 +29,7 @@ const ChessBoard = (): ReactElement => {
   };
 
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center scale-150'>
       <section className='flex w-[324px] flex-wrap m-auto mt-[100px] border-solid border-2 border-sky-500'>
         {caseList}
       </section>

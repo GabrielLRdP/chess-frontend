@@ -7,7 +7,7 @@ export class Queen extends Piece {
   constructor(color: Color, position: Position) {
     super(color, position, color === 'white' ? 'Q' : 'q');
   }
-  getLegalMoves(position: Array<Piece | null>): Array<Position> {
+  getRange(position: Array<Piece | null>): Array<Position> {
     let result: Position[] = [];
 
     const lines = getLineLegalMoves(this.position, position, this.color);

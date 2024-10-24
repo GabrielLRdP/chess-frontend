@@ -6,7 +6,7 @@ export class Bishop extends Piece {
   constructor(color: Color, position: Position) {
     super(color, position, color === 'white' ? 'B' : 'b');
   }
-  getLegalMoves(position: Array<Piece | null>): Array<Position> {
+  getRange(position: Array<Piece | null>): Array<Position> {
     const result: Position[] = getDiagonalLegalMoves(
       this.position,
       position,

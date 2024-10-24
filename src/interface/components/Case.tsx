@@ -1,38 +1,25 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement } from 'react';
 import { Color } from '../../shared/types/global_types';
 import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
 import { Piece } from '../../domain/entities/piece/Piece';
 import { usePositionStore } from '../store/usePositionStore';
 import handleCaseClick from '../functions/handleCaseClick';
-import { indexToCoord } from '../../shared/utils/indexToCoord';
+// import { indexToCoord } from '../../shared/utils/indexToCoord';
 const Case = ({
   color,
   piece,
   pieceObject,
   index,
+  legalMoveDisplay,
 }: {
   color: Color;
   piece: ReactElement | null;
   pieceObject: Piece | null;
   index: number;
+  legalMoveDisplay: boolean;
 }): ReactElement => {
   const { initialPosition, setInitialPosition } = usePositionStore();
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
-  const [legalMoveDisplay, setLegalMovDisplay] = useState<boolean>(false);
-  const casePosition = indexToCoord(index);
-  useEffect(() => {
-    let isCaseLegalMove = false;
-    if (selectedPiece) {
-      isCaseLegalMove = selectedPiece
-        ?.getLegalMoves(initialPosition)
-        .some((element) => {
-          return (
-            element[0] === casePosition[0] && element[1] === casePosition[1]
-          );
-        });
-    }
-    setLegalMovDisplay(isCaseLegalMove);
-  }, [selectedPiece]);
   const handleClick = (piece: Piece | null) => {
     const newPosition = handleCaseClick(
       initialPosition,

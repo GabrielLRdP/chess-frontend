@@ -7,12 +7,18 @@ export class King extends Piece {
   constructor(color: Color, position: Position) {
     super(color, position, color === 'white' ? 'K' : 'k');
   }
-  public getLegalMoves(position: Array<Piece | null>): Array<Position> {
+  public getRange(position: Array<Piece | null>): Array<Position> {
     const result: Position[] = [];
     const casesToCheck = [];
     for (let i = -1; i < 2; i++) {
       for (let j = -1; j < 2; j++) {
-        if (i !== 0 || j !== 0) {
+        if (
+          (i !== 0 || j !== 0) &&
+          i + this.position[0] > 0 &&
+          i + this.position[0] < 8 &&
+          this.position[1] + j > 0 &&
+          this.position[1] + j < 8
+        ) {
           casesToCheck.push([this.position[0] + i, this.position[1] + j]);
         }
       }
@@ -33,15 +39,18 @@ export class King extends Piece {
 
   public isInCheck(position: Array<Piece | null>) {
     const adversaryColor = this.color === 'white' ? 'black' : 'white';
-
     return position.some((element) => {
-      return (
-        element?.color === adversaryColor &&
-        element?.notation.toLowerCase() !== 'k' &&
-        element?.getLegalMoves(position).some((e) => {
-          return e[0] === this.position[0] && e[1] === this.position[1];
-        })
-      );
+      if (element?.color) {
+        // console.log(element, 'icci');
+        return (
+          element.color === adversaryColor &&
+          element.getRange(position).some((e) => {
+            return e[0] === this.position[0] && e[1] === this.position[1];
+          })
+        );
+      } else {
+        return false;
+      }
     });
   }
 }

@@ -11,7 +11,7 @@ const handleCaseClick = (
   targetIndex: number
 ): Board => {
   const targetPosition = indexToCoord(targetIndex);
-  if (selectedPiece) {
+  if (selectedPiece && selectedPiece.color !== targetPiece?.color) {
     const newPosition: Board = ChessBoardService.makeMove(
       board,
       selectedPiece,
@@ -20,7 +20,14 @@ const handleCaseClick = (
     setSelectedPiece(null);
     return newPosition;
   }
-  setSelectedPiece(targetPiece);
+  if (
+    selectedPiece?.position[0] === targetPiece?.position[0] &&
+    selectedPiece?.position[1] === targetPiece?.position[1]
+  ) {
+    setSelectedPiece(null);
+  } else {
+    setSelectedPiece(targetPiece);
+  }
   return board;
 };
 

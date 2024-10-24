@@ -7,7 +7,7 @@ export class Knight extends Piece {
   constructor(color: Color, position: Position) {
     super(color, position, color === 'white' ? 'N' : 'n');
   }
-  getLegalMoves(position: Array<Piece | null>): Array<Position> {
+  getRange(position: Array<Piece | null>): Array<Position> {
     const result: Position[] = [];
     const casesToCheck = [];
 
