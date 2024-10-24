@@ -14,9 +14,9 @@ export class King extends Piece {
       for (let j = -1; j < 2; j++) {
         if (
           (i !== 0 || j !== 0) &&
-          i + this.position[0] > 0 &&
+          i + this.position[0] >= 0 &&
           i + this.position[0] < 8 &&
-          this.position[1] + j > 0 &&
+          this.position[1] + j >= 0 &&
           this.position[1] + j < 8
         ) {
           casesToCheck.push([this.position[0] + i, this.position[1] + j]);
