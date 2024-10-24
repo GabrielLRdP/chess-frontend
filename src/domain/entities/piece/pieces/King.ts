@@ -41,7 +41,6 @@ export class King extends Piece {
     const adversaryColor = this.color === 'white' ? 'black' : 'white';
     return position.some((element) => {
       if (element?.color) {
-        // console.log(element, 'icci');
         return (
           element.color === adversaryColor &&
           element.getRange(position).some((e) => {

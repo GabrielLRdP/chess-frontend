@@ -33,8 +33,6 @@ export abstract class Piece {
         }
       });
 
-      console.log(getKing(potentialPosition, this.color));
-
       const wouldKingBeInCheck = getKing(
         potentialPosition,
         this.color
