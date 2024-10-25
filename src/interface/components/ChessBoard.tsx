@@ -8,22 +8,24 @@ import { Position } from '../../shared/types/global_types';
 
 const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
-  const { initialPosition, setInitialPosition } = usePositionStore();
+  const { currentPosition, setPosition, setInitialPosition } =
+    usePositionStore();
   const defaultInitialFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
 
   useEffect(() => {
     let legalMoves: Position[] = [];
     if (selectedPiece) {
-      legalMoves = selectedPiece?.getLegalMoves(initialPosition);
+      legalMoves = selectedPiece?.getLegalMoves(currentPosition);
     }
-    const icons = positionToIcons(initialPosition);
-    setCaseList(() => positionToCaseList(icons, initialPosition, legalMoves));
-  }, [initialPosition, selectedPiece]);
+    const icons = positionToIcons(currentPosition);
+    setCaseList(() => positionToCaseList(icons, currentPosition, legalMoves));
+  }, [currentPosition, selectedPiece]);
 
   const handleClick = () => {
     const pieceList = ChessBoardService.initializeBoard(defaultInitialFen);
     setInitialPosition(pieceList);
+    setPosition(pieceList);
     setSelectedPiece(null);
   };
 

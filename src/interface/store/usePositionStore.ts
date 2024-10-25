@@ -1,13 +1,13 @@
-import { create } from "zustand";
-import { Piece } from "../../domain/entities/piece/Piece";
+import { create } from 'zustand';
+import { Piece } from '../../domain/entities/piece/Piece';
 
 type PositionState = {
   initialPosition: Array<Piece | null>;
   currentPosition: Array<Piece | null>;
 
   setInitialPosition: (position: Array<Piece | null>) => void;
-  setPosition: (newPosition: Array<Piece>) => void;
-  initPosition: (initialPosition: Array<Piece>) => void;
+  setPosition: (newPosition: Array<Piece | null>) => void;
+  initPosition: (initialPosition: Array<Piece | null>) => void;
 };
 
 export const usePositionStore = create<PositionState>((set, get) => ({

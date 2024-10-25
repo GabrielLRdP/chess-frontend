@@ -13,7 +13,8 @@ const Case = ({
   index,
   legalMoveDisplay,
 }: CaseProps): ReactElement => {
-  const { initialPosition, setInitialPosition } = usePositionStore();
+  const { initialPosition, currentPosition, setPosition, setInitialPosition } =
+    usePositionStore();
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const [isThereAPiece, setIsThereAPiece] = useState(false);
   useEffect(() => {
@@ -22,13 +23,13 @@ const Case = ({
   }, [legalMoveDisplay, piece]);
   const handleClick = (piece: Piece | null) => {
     const newPosition = handleCaseClick(
-      initialPosition,
+      currentPosition,
       selectedPiece,
       setSelectedPiece,
       piece,
       index
     );
-    setInitialPosition(newPosition);
+    setPosition(newPosition);
   };
   console.log(piece);
   return (
