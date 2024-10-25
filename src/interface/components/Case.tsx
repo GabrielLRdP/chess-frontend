@@ -13,8 +13,7 @@ const Case = ({
   index,
   legalMoveDisplay,
 }: CaseProps): ReactElement => {
-  const { initialPosition, currentPosition, setPosition, setInitialPosition } =
-    usePositionStore();
+  const { currentPosition, setPosition } = usePositionStore();
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const [isThereAPiece, setIsThereAPiece] = useState(false);
   useEffect(() => {
