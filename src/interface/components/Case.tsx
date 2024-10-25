@@ -1,10 +1,11 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { Color } from '../../shared/types/global_types';
 import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
 import { Piece } from '../../domain/entities/piece/Piece';
 import { usePositionStore } from '../store/usePositionStore';
 import handleCaseClick from '../functions/handleCaseClick';
-// import { indexToCoord } from '../../shared/utils/indexToCoord';
+import AllowedMoveOverlay from './AllowedMoveOverlay';
+
 const Case = ({
   color,
   piece,
@@ -20,6 +21,11 @@ const Case = ({
 }): ReactElement => {
   const { initialPosition, setInitialPosition } = usePositionStore();
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
+  const [isThereAPiece, setIsThereAPiece] = useState(false);
+  useEffect(() => {
+    setIsThereAPiece(piece !== null);
+    console.log(isThereAPiece);
+  }, [legalMoveDisplay, piece]);
   const handleClick = (piece: Piece | null) => {
     const newPosition = handleCaseClick(
       initialPosition,
@@ -30,6 +36,7 @@ const Case = ({
     );
     setInitialPosition(newPosition);
   };
+  console.log(piece);
   return (
     <div
       className={`${
@@ -38,9 +45,9 @@ const Case = ({
       onClick={() => handleClick(pieceObject)}
     >
       {piece}
-      {legalMoveDisplay && (
-        <div className='w-2 h-2 bg-green-500 rounded-full'></div>
-      )}
+      {legalMoveDisplay ? (
+        <AllowedMoveOverlay isThereAPiece={isThereAPiece} />
+      ) : null}
     </div>
   );
 };
