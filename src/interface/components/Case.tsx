@@ -12,13 +12,7 @@ const Case = ({
   pieceObject,
   index,
   legalMoveDisplay,
-}: {
-  color: Color;
-  piece: ReactElement | null;
-  pieceObject: Piece | null;
-  index: number;
-  legalMoveDisplay: boolean;
-}): ReactElement => {
+}: CaseProps): ReactElement => {
   const { initialPosition, setInitialPosition } = usePositionStore();
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const [isThereAPiece, setIsThereAPiece] = useState(false);
@@ -53,3 +47,11 @@ const Case = ({
 };
 
 export default Case;
+
+type CaseProps = {
+  color: Color;
+  piece: ReactElement | null;
+  pieceObject: Piece | null;
+  index: number;
+  legalMoveDisplay: boolean;
+};
