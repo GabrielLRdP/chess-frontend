@@ -5,6 +5,7 @@ import { Piece } from '../../domain/entities/piece/Piece';
 import { usePositionStore } from '../store/usePositionStore';
 import handleCaseClick from '../functions/handleCaseClick';
 import AllowedMoveOverlay from './AllowedMoveOverlay';
+import { useTakenPiecesStore } from '../store/useTakenPiecesStore';
 
 const Case = ({
   color,
@@ -16,9 +17,9 @@ const Case = ({
   const { currentPosition, setPosition } = usePositionStore();
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const [isThereAPiece, setIsThereAPiece] = useState(false);
+  const { takenPieces, setTakenPieces } = useTakenPiecesStore();
   useEffect(() => {
     setIsThereAPiece(piece !== null);
-    console.log(isThereAPiece);
   }, [legalMoveDisplay, piece]);
   const handleClick = (piece: Piece | null) => {
     const newPosition = handleCaseClick(
@@ -26,11 +27,13 @@ const Case = ({
       selectedPiece,
       setSelectedPiece,
       piece,
-      index
+      index,
+      takenPieces,
+      setTakenPieces
     );
+    console.log(takenPieces);
     setPosition(newPosition);
   };
-  console.log(piece);
   return (
     <div
       className={`${

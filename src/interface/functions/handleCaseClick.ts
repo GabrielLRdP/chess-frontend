@@ -8,7 +8,9 @@ const handleCaseClick = (
   selectedPiece: Piece | null,
   setSelectedPiece: (param: Piece | null) => void,
   targetPiece: Piece | null,
-  targetIndex: number
+  targetIndex: number,
+  takenPieces: Piece[],
+  setTakenPieces: (takenPiece: Piece[]) => void
 ): Board => {
   const targetPosition = indexToCoord(targetIndex);
   if (selectedPiece && selectedPiece.color !== targetPiece?.color) {
@@ -18,6 +20,11 @@ const handleCaseClick = (
       targetPosition
     );
     setSelectedPiece(null);
+    if (targetPiece !== null) {
+      const newTakenPiece = [...takenPieces];
+      newTakenPiece.push(targetPiece);
+      setTakenPieces(newTakenPiece);
+    }
     return newPosition;
   }
   if (
