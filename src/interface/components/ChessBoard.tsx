@@ -31,9 +31,9 @@ const ChessBoard = (): ReactElement => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center w-[320px] m-auto mt-[100px]'>
+    <div className='flex flex-col items-center justify-center w-[480px] m-auto mt-[100px]'>
       <CapturedPieces color={'white'} />
-      <section className='flex w-[320px] flex-wrap m-auto rounded-lg overflow-hidden'>
+      <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden'>
         {caseList}
       </section>
       <CapturedPieces color={'black'} />

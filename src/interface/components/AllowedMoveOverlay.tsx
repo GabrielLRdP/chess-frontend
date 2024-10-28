@@ -4,9 +4,9 @@ const AllowedMoveOverlay = ({
   isThereAPiece,
 }: AllowedMoveOverlayProps): ReactElement => {
   const overlay = isThereAPiece ? (
-    <div className='w-8 h-8 border-opacity-30  border-gray-800 border-[3px] rounded-full absolute'></div>
+    <div className='w-12 h-12 border-opacity-40  border-gray-800 border-[6px] rounded-full absolute'></div>
   ) : (
-    <div className='w-2 h-2 bg-gray-800 opacity-30 rounded-full absolute'></div>
+    <div className='w-4 h-4 bg-gray-800 opacity-40 rounded-full absolute'></div>
   );
   return overlay;
 };
