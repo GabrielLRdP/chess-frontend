@@ -5,6 +5,7 @@ import { ChessBoardService } from '../../application/services/ChesBoardService/C
 import { usePositionStore } from '../store/usePositionStore';
 import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
 import { Position } from '../../shared/types/global_types';
+import CapturedPieces from './CapturedPieces';
 
 const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
@@ -30,10 +31,12 @@ const ChessBoard = (): ReactElement => {
   };
 
   return (
-    <div className='flex flex-col items-center scale-150'>
-      <section className='flex w-[324px] flex-wrap m-auto mt-[100px] border-solid border-2 border-sky-500'>
+    <div className='flex flex-col items-center justify-center w-[320px] m-auto mt-[100px]'>
+      <CapturedPieces color={'white'} />
+      <section className='flex w-[320px] flex-wrap m-auto rounded-lg overflow-hidden'>
         {caseList}
       </section>
+      <CapturedPieces color={'black'} />
       <button
         type='button'
         onClick={handleClick}

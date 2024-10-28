@@ -31,14 +31,13 @@ const Case = ({
       takenPieces,
       setTakenPieces
     );
-    console.log(takenPieces);
     setPosition(newPosition);
   };
   return (
     <div
       className={`${
         color === 'black' ? 'bg-orange-900' : 'bg-orange-400'
-      } w-10 h-10 flex items-center justify-center border border-transparent hover:border-amber-400`}
+      } w-10 h-10 flex items-center justify-center border border-transparent hover:border-amber-400 overflow-hidden`}
       onClick={() => handleClick(pieceObject)}
     >
       {piece}

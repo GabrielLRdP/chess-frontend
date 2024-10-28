@@ -21,6 +21,7 @@ const positionToCaselist = (
         piece={translatedPosition[i]}
         pieceObject={position[i]}
         index={i}
+        key={color + position + i}
         legalMoveDisplay={legalMoves.some((element) => {
           return (
             element[0] === casePosition[0] && element[1] === casePosition[1]
