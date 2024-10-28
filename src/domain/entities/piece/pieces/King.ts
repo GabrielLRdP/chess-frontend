@@ -5,7 +5,7 @@ import { coordToIndex } from '../../../../shared/utils/coordToIndex.ts';
 
 export class King extends Piece {
   constructor(color: Color, position: Position) {
-    super(color, position, color === 'white' ? 'K' : 'k');
+    super(color, position, color === 'white' ? 'K' : 'k', 6);
   }
   public getRange(position: Array<Piece | null>): Array<Position> {
     const result: Position[] = [];

@@ -5,7 +5,7 @@ import { getDiagonalLegalMoves } from '../../../utils/getDiagonalLegalMoves.ts';
 
 export class Queen extends Piece {
   constructor(color: Color, position: Position) {
-    super(color, position, color === 'white' ? 'Q' : 'q');
+    super(color, position, color === 'white' ? 'Q' : 'q', 5);
   }
   getRange(position: Array<Piece | null>): Array<Position> {
     let result: Position[] = [];

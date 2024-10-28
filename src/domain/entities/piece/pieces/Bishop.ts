@@ -4,7 +4,7 @@ import { getDiagonalLegalMoves } from '../../../utils/getDiagonalLegalMoves.ts';
 
 export class Bishop extends Piece {
   constructor(color: Color, position: Position) {
-    super(color, position, color === 'white' ? 'B' : 'b');
+    super(color, position, color === 'white' ? 'B' : 'b', 3);
   }
   getRange(position: Array<Piece | null>): Array<Position> {
     const result: Position[] = getDiagonalLegalMoves(

@@ -6,6 +6,7 @@ import { usePositionStore } from '../store/usePositionStore';
 import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
 import { Position } from '../../shared/types/global_types';
 import CapturedPieces from './CapturedPieces';
+import { useTakenPiecesStore } from '../store/useTakenPiecesStore';
 
 const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
@@ -13,6 +14,7 @@ const ChessBoard = (): ReactElement => {
     usePositionStore();
   const defaultInitialFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
+  const { setTakenPieces } = useTakenPiecesStore();
 
   useEffect(() => {
     let legalMoves: Position[] = [];
@@ -28,6 +30,7 @@ const ChessBoard = (): ReactElement => {
     setInitialPosition(pieceList);
     setPosition(pieceList);
     setSelectedPiece(null);
+    setTakenPieces([]);
   };
 
   return (

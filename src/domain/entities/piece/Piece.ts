@@ -7,7 +7,8 @@ export abstract class Piece {
   constructor(
     readonly color: Color,
     public position: Position,
-    readonly notation: string
+    readonly notation: string,
+    readonly value: number
   ) {}
   getLegalMoves(position: Array<Piece | null>): Array<Position> {
     const range = this.getRange(position);

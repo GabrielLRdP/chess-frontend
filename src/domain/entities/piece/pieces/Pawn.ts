@@ -5,8 +5,9 @@ import { isThereAPiece } from '../../../../shared/utils/isThereAPiece.ts';
 
 export class Pawn extends Piece {
   constructor(color: Color, position: Position) {
-    super(color, position, color === 'white' ? 'P' : 'p');
+    super(color, position, color === 'white' ? 'P' : 'p', 1);
   }
+
   getRange(position: Array<Piece | null>): Array<Position> {
     const direction = this.color === 'white' ? 1 : -1;
     const startPosition = this.color === 'white' ? 1 : 6;
