@@ -32,6 +32,7 @@ export class ChessBoardService {
     piece.position = targetPosition;
     board[pieceIndex] = null;
     board[targetIndex] = piece;
+    piece.hasMoved = true;
 
     return [...board];
   }

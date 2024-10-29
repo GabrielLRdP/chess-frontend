@@ -4,7 +4,7 @@ import { getLineLegalMoves } from '../../../utils/getLineLegalMoves.ts';
 
 export class Rook extends Piece {
   constructor(color: Color, position: Position) {
-    super(color, position, color === 'white' ? 'R' : 'r', 4);
+    super(color, position, color === 'white' ? 'R' : 'r', 4, false);
   }
   getRange(position: Array<Piece | null>): Array<Position> {
     const result: Position[] = getLineLegalMoves(

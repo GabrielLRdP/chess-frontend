@@ -8,7 +8,8 @@ export abstract class Piece {
     readonly color: Color,
     public position: Position,
     readonly notation: string,
-    readonly value: number
+    readonly value: number,
+    public hasMoved?: boolean
   ) {}
   getLegalMoves(position: Array<Piece | null>): Array<Position> {
     const range = this.getRange(position);
