@@ -13,7 +13,7 @@ export abstract class Piece {
   ) {}
   getLegalMoves(position: Array<Piece | null>): Array<Position> {
     const range = this.getRange(position);
-    return range.filter((element) => {
+    let legalMoves = range.filter((element) => {
       const potentialPosition = position.map((e, index) => {
         if (
           e?.position[0] === this.position[0] &&
@@ -34,13 +34,43 @@ export abstract class Piece {
           return e;
         }
       });
-
       const wouldKingBeInCheck = getKing(
         potentialPosition,
         this.color
       ).isInCheck(potentialPosition);
       return !wouldKingBeInCheck;
     });
+
+    const checkCastle = (direction: 'left' | 'right') => {
+      if (this.notation.toLowerCase() !== 'k') {
+        return;
+      }
+      let dir: number;
+      direction === 'right' ? (dir = 1) : (dir = -1);
+      if (
+        legalMoves.some(
+          (element) =>
+            element[0] === this.position[0] + 2 * dir &&
+            element[1] === this.position[1]
+        ) &&
+        !legalMoves.some(
+          (element) =>
+            element[0] === this.position[0] + dir &&
+            element[1] === this.position[1]
+        )
+      ) {
+        legalMoves = legalMoves.filter(
+          (element) =>
+            element[0] !== this.position[0] + 2 * dir &&
+            element[1] !== this.position[1]
+        );
+      }
+    };
+
+    checkCastle('left');
+    checkCastle('right');
+
+    return legalMoves;
   }
 
   abstract getRange(position: Array<Piece | null>): Array<Position>;
