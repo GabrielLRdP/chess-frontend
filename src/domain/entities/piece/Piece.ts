@@ -11,6 +11,7 @@ export abstract class Piece {
     readonly value: number
   ) {}
   public hasMoved?: boolean;
+  public previousPostion: Position = this.position;
   getLegalMoves(position: Array<Piece | null>): Array<Position> {
     const range = this.getRange(position);
     let legalMoves = range.filter((element) => {

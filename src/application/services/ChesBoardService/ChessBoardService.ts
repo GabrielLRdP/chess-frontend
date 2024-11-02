@@ -52,6 +52,7 @@ export class ChessBoardService {
 
     const pieceIndex = coordToIndex(piece.position);
     const targetIndex = coordToIndex(targetPosition);
+    piece.previousPostion = piece.position;
     piece.position = targetPosition;
     board[pieceIndex] = null;
     board[targetIndex] = piece;
