@@ -8,9 +8,9 @@ export abstract class Piece {
     readonly color: Color,
     public position: Position,
     readonly notation: string,
-    readonly value: number,
-    public hasMoved?: boolean
+    readonly value: number
   ) {}
+  public hasMoved?: boolean;
   getLegalMoves(position: Array<Piece | null>): Array<Position> {
     const range = this.getRange(position);
     let legalMoves = range.filter((element) => {
@@ -41,7 +41,7 @@ export abstract class Piece {
       return !wouldKingBeInCheck;
     });
 
-    const checkCastle = (direction: 'left' | 'right') => {
+    const checkCastle = (direction: 'left' | 'right'): void => {
       if (this.notation.toLowerCase() !== 'k') {
         return;
       }

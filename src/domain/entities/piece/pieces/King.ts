@@ -5,8 +5,11 @@ import { coordToIndex } from '../../../../shared/utils/coordToIndex.ts';
 
 export class King extends Piece {
   constructor(color: Color, position: Position) {
-    super(color, position, color === 'white' ? 'K' : 'k', 6, false);
+    super(color, position, color === 'white' ? 'K' : 'k', 6);
   }
+
+  public hasMoved = false;
+
   public getRange(position: Array<Piece | null>): Array<Position> {
     let result: Position[] = [];
     const casesToCheck = [];
