@@ -23,7 +23,6 @@ const ChessBoard = (): ReactElement => {
     }
     const icons = positionToIcons(currentPosition);
     setCaseList(() => positionToCaseList(icons, currentPosition, legalMoves));
-    console.log(selectedPiece);
   }, [currentPosition, selectedPiece]);
 
   const handleClick = () => {
