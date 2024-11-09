@@ -1,11 +1,8 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { Color } from '../../shared/types/global_types';
-import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
 import { Piece } from '../../domain/entities/piece/Piece';
-import { usePositionStore } from '../store/usePositionStore';
-import handleCaseClick from '../functions/handleCaseClick';
+import useHandleCaseClick from '../hooks/useHandleCaseClick';
 import AllowedMoveOverlay from './AllowedMoveOverlay';
-import { useTakenPiecesStore } from '../store/useTakenPiecesStore';
 
 const Case = ({
   color,
@@ -14,31 +11,20 @@ const Case = ({
   index,
   legalMoveDisplay,
 }: CaseProps): ReactElement => {
-  const { currentPosition, setPosition } = usePositionStore();
-  const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const [isThereAPiece, setIsThereAPiece] = useState(false);
-  const { takenPieces, setTakenPieces } = useTakenPiecesStore();
+
+  const handleClick = useHandleCaseClick(pieceObject, index);
+
   useEffect(() => {
     setIsThereAPiece(piece !== null);
   }, [legalMoveDisplay, piece]);
-  const handleClick = (piece: Piece | null) => {
-    const newPosition = handleCaseClick(
-      currentPosition,
-      selectedPiece,
-      setSelectedPiece,
-      piece,
-      index,
-      takenPieces,
-      setTakenPieces
-    );
-    setPosition(newPosition);
-  };
+
   return (
     <div
       className={`${
         color === 'black' ? 'bg-orange-900' : 'bg-orange-400'
       } w-[60px] h-[60px] text-[30px] flex items-center justify-center border border-transparent hover:border-amber-400 overflow-hidden`}
-      onClick={() => handleClick(pieceObject)}
+      onClick={handleClick}
     >
       {piece}
       {legalMoveDisplay ? (

@@ -7,6 +7,8 @@ import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
 import { Position } from '../../shared/types/global_types';
 import CapturedPieces from './CapturedPieces';
 import { useTakenPiecesStore } from '../store/useTakenPiecesStore';
+import { useGameStore } from '../store/useGameStore';
+import { Game } from '../../domain/entities/game/Game';
 
 const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
@@ -15,6 +17,8 @@ const ChessBoard = (): ReactElement => {
   const defaultInitialFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const { setTakenPieces } = useTakenPiecesStore();
+
+  const { setGame } = useGameStore();
 
   useEffect(() => {
     let legalMoves: Position[] = [];
@@ -27,6 +31,7 @@ const ChessBoard = (): ReactElement => {
 
   const handleClick = () => {
     const pieceList = ChessBoardService.initializeBoard(defaultInitialFen);
+    setGame(new Game());
     setInitialPosition(pieceList);
     setPosition(pieceList);
     setSelectedPiece(null);
@@ -35,7 +40,7 @@ const ChessBoard = (): ReactElement => {
 
   return (
     <div className='flex flex-col items-center justify-center w-[480px] m-auto mt-[100px]'>
-      <CapturedPieces color={'white'} />
+      <CapturedPieces color={'white'} key={Math.random()} />
       <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden'>
         {caseList}
       </section>
