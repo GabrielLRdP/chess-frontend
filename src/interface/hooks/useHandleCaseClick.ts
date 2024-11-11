@@ -86,7 +86,6 @@ const useHandleCaseClick = (
       setPosition(newPosition);
     }
     handleNewSelectedCase();
-    setPosition(currentPosition);
   };
 };
 
