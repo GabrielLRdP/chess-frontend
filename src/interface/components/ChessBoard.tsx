@@ -17,13 +17,15 @@ const ChessBoard = (): ReactElement => {
   const defaultInitialFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const { setTakenPieces } = useTakenPiecesStore();
-
-  const { setGame } = useGameStore();
+  const { game, setGame } = useGameStore();
 
   useEffect(() => {
     let legalMoves: Position[] = [];
     if (selectedPiece) {
-      legalMoves = selectedPiece?.getLegalMoves(currentPosition);
+      legalMoves = selectedPiece?.getLegalMoves(
+        currentPosition,
+        game ? game.enPassantCase : null
+      );
     }
     const icons = positionToIcons(currentPosition);
     setCaseList(() => positionToCaseList(icons, currentPosition, legalMoves));

@@ -27,6 +27,9 @@ export class ChessBoardService {
     piece: Piece,
     targetPosition: Position
   ) {
+    const pieceIndex = coordToIndex(piece.position);
+    const targetIndex = coordToIndex(targetPosition);
+    let takenPiece = board[targetIndex] ? { ...board[targetIndex] } : null;
     const rookMoveIfCastle = (direction: 'left' | 'right') => {
       let dir;
       direction === 'left' ? (dir = -1) : (dir = 1);
@@ -47,17 +50,31 @@ export class ChessBoardService {
       }
     };
 
+    const handleEnPassantMove = () => {
+      if (
+        piece.notation.toLowerCase() === 'p' &&
+        targetPosition[0] !== piece.position[0] &&
+        !board[targetIndex]?.color
+      ) {
+        const pieceToTakeIndex = coordToIndex([
+          targetPosition[0],
+          piece.position[1],
+        ]);
+        takenPiece = board[pieceToTakeIndex];
+        board[pieceToTakeIndex] = null;
+      }
+    };
+
     rookMoveIfCastle('left');
     rookMoveIfCastle('right');
+    handleEnPassantMove();
 
-    const pieceIndex = coordToIndex(piece.position);
-    const targetIndex = coordToIndex(targetPosition);
     piece.previousPostion = piece.position;
     piece.position = targetPosition;
     board[pieceIndex] = null;
     board[targetIndex] = piece;
     piece.hasMoved = true;
-
-    return [...board];
+    console.log({ takenPiece: takenPiece, newPosition: [...board] });
+    return { takenPiece: takenPiece, newPosition: [...board] };
   }
 }

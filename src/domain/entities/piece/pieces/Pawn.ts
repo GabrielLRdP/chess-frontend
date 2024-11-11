@@ -8,7 +8,10 @@ export class Pawn extends Piece {
     super(color, position, color === 'white' ? 'P' : 'p', 1);
   }
 
-  getRange(position: Array<Piece | null>): Array<Position> {
+  getRange(
+    position: Array<Piece | null>,
+    enPassantCase: Position | null
+  ): Array<Position> {
     const direction = this.color === 'white' ? 1 : -1;
     const startPosition = this.color === 'white' ? 1 : 6;
     const piecePosition = [this.position[0], this.position[1]];
@@ -54,6 +57,15 @@ export class Pawn extends Piece {
       position[rightSideTakePostionIndex].color !== this.color
     ) {
       result.push([this.position[0] - direction, this.position[1] + direction]);
+    }
+
+    if (
+      enPassantCase &&
+      Math.abs(this.position[0] - enPassantCase[0]) === 1 &&
+      this.position[1] === enPassantCase[1] - direction &&
+      this.hasMoved
+    ) {
+      result.push(enPassantCase);
     }
     return result;
   }

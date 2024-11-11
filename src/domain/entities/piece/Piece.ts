@@ -12,8 +12,11 @@ export abstract class Piece {
   ) {}
   public hasMoved?: boolean;
   public previousPostion: Position = this.position;
-  getLegalMoves(position: Array<Piece | null>): Array<Position> {
-    const range = this.getRange(position);
+  getLegalMoves(
+    position: Array<Piece | null>,
+    enPassantCase: Position | null
+  ): Array<Position> {
+    const range = this.getRange(position, enPassantCase);
     let legalMoves = range.filter((element) => {
       const potentialPosition = position.map((e, index) => {
         if (
@@ -74,5 +77,8 @@ export abstract class Piece {
     return legalMoves;
   }
 
-  abstract getRange(position: Array<Piece | null>): Array<Position>;
+  abstract getRange(
+    position: Array<Piece | null>,
+    enPassantCase: Position | null
+  ): Array<Position>;
 }
