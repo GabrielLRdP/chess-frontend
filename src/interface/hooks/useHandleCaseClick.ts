@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { ChessBoardService } from '../../application/services/ChesBoardService/ChessBoardService';
 import { Piece } from '../../domain/entities/piece/Piece';
 import { indexToCoord } from '../../shared/utils/indexToCoord';
-import { toggleColor } from '../../shared/utils/toggleColor';
 import { useGameStore } from '../store/useGameStore';
 import { usePositionStore } from '../store/usePositionStore';
 import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
 import { useTakenPiecesStore } from '../store/useTakenPiecesStore';
 import { Position } from '../../shared/types/global_types';
+import usePawnPromotion from './usePawnPromotion';
+import { useEndTurn } from './useEndTurn';
 
 const useHandleCaseClick = (
   targetPiece: Piece | null,
@@ -64,26 +65,33 @@ const useHandleCaseClick = (
         );
       });
 
+  const promotePawn = usePawnPromotion();
+  const endTurn = useEndTurn();
+
   return () => {
+    console.log(selectedPiece);
     if (isMovePossible) {
+      console.log('coucou1');
       handleEnPassantCase();
-      const { takenPiece, newPosition } = ChessBoardService.makeMove(
-        currentPosition,
-        selectedPiece,
-        targetPosition
-      );
-      setSelectedPiece(null);
+      const { pawnPromotion, takenPiece, newPosition } =
+        ChessBoardService.makeMove(
+          currentPosition,
+          selectedPiece,
+          targetPosition
+        );
+      setPosition(newPosition);
+      console.log('ha');
       if (takenPiece) {
         const newTakenPiece = [...takenPieces];
         newTakenPiece.push(takenPiece as Piece);
         setTakenPieces(newTakenPiece);
       }
-      setGame({
-        ...game,
-        playerTurn: toggleColor(game.playerTurn),
-        turn: selectedPiece.color === 'black' ? game.turn + 1 : game.turn,
-      });
-      setPosition(newPosition);
+      if (pawnPromotion) {
+        const promotedPiece = promotePawn();
+        console.log(promotedPiece);
+        return;
+      }
+      endTurn(game);
     }
     handleNewSelectedCase();
   };

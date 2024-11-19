@@ -9,6 +9,8 @@ import CapturedPieces from './CapturedPieces';
 import { useTakenPiecesStore } from '../store/useTakenPiecesStore';
 import { useGameStore } from '../store/useGameStore';
 import { Game } from '../../domain/entities/game/Game';
+import PromotionModal from './PromotionModal';
+import { usePromotionStore } from '../store/usePromotionStore';
 
 const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
@@ -18,6 +20,7 @@ const ChessBoard = (): ReactElement => {
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const { setTakenPieces } = useTakenPiecesStore();
   const { game, setGame } = useGameStore();
+  const { isModalOpen } = usePromotionStore();
 
   useEffect(() => {
     let legalMoves: Position[] = [];
@@ -41,7 +44,8 @@ const ChessBoard = (): ReactElement => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center w-[480px] m-auto mt-[100px]'>
+    <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[100px]'>
+      {isModalOpen && <PromotionModal />}
       <CapturedPieces color={'white'} key={Math.random()} />
       <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden'>
         {caseList}

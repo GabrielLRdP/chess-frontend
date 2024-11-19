@@ -29,6 +29,10 @@ export class ChessBoardService {
   ) {
     const pieceIndex = coordToIndex(piece.position);
     const targetIndex = coordToIndex(targetPosition);
+    const pawnPromotionRow = piece.color === 'white' ? 7 : 0;
+    const pawnPromotion =
+      piece.notation.toLowerCase() === 'p' &&
+      targetPosition[1] === pawnPromotionRow;
     let takenPiece = board[targetIndex] ? { ...board[targetIndex] } : null;
     const rookMoveIfCastle = (direction: 'left' | 'right') => {
       let dir;
@@ -74,7 +78,21 @@ export class ChessBoardService {
     board[pieceIndex] = null;
     board[targetIndex] = piece;
     piece.hasMoved = true;
-    console.log({ takenPiece: takenPiece, newPosition: [...board] });
-    return { takenPiece: takenPiece, newPosition: [...board] };
+    return {
+      pawnPromotion: pawnPromotion,
+      takenPiece: takenPiece,
+      newPosition: [...board],
+    };
+  }
+
+  static replacePiece(
+    board: Array<Piece | null>,
+    originPiece: Piece,
+    targetPiece: Piece
+  ) {
+    const pieceIndex = coordToIndex(originPiece.position);
+    const newBoard = [...board];
+    newBoard[pieceIndex] = targetPiece;
+    return newBoard;
   }
 }

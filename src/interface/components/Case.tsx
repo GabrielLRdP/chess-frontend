@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement } from 'react';
 import { Color } from '../../shared/types/global_types';
 import { Piece } from '../../domain/entities/piece/Piece';
 import useHandleCaseClick from '../hooks/useHandleCaseClick';
@@ -11,13 +11,9 @@ const Case = ({
   index,
   legalMoveDisplay,
 }: CaseProps): ReactElement => {
-  const [isThereAPiece, setIsThereAPiece] = useState(false);
+  const isThereAPiece = piece !== null;
 
   const handleClick = useHandleCaseClick(pieceObject, index);
-
-  useEffect(() => {
-    setIsThereAPiece(piece !== null);
-  }, [legalMoveDisplay, piece]);
 
   return (
     <div

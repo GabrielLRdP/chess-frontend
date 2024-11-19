@@ -12,7 +12,10 @@ import { Piece } from '../../domain/entities/piece/Piece';
 import { ReactElement } from 'react';
 
 export class PieceIconFactory {
-  createIcon(notation: Piece['notation'] | null): ReactElement | null {
+  createIcon(
+    notation: Piece['notation'] | null,
+    additionnalStyle?: string
+  ): ReactElement | null {
     if (notation === null) {
       return null;
     }
@@ -28,7 +31,7 @@ export class PieceIconFactory {
     return (
       <FontAwesomeIcon
         icon={icons[notation.toLowerCase()]}
-        className={`text-${color}`}
+        className={`text-${color} ${additionnalStyle}`}
       />
     );
   }
