@@ -10,7 +10,6 @@ export const useEndTurn = () => {
   const { setGame } = useGameStore();
 
   return (game: Game) => {
-    console.log('coucsdcfou');
     setPromotionChoice(null);
     setSelectedPiece(null);
     setGame({

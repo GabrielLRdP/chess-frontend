@@ -5,7 +5,7 @@ import { ChessBoardService } from '../../application/services/ChesBoardService/C
 import { usePositionStore } from '../store/usePositionStore';
 import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
 import { Position } from '../../shared/types/global_types';
-import CapturedPieces from './CapturedPieces';
+import InfoSection from './InfoSection';
 import { useTakenPiecesStore } from '../store/useTakenPiecesStore';
 import { useGameStore } from '../store/useGameStore';
 import { Game } from '../../domain/entities/game/Game';
@@ -46,11 +46,11 @@ const ChessBoard = (): ReactElement => {
   return (
     <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[100px]'>
       {isModalOpen && <PromotionModal />}
-      <CapturedPieces color={'white'} key={Math.random()} />
+      <InfoSection color={'white'} key={Math.random()} />
       <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden'>
         {caseList}
       </section>
-      <CapturedPieces color={'black'} />
+      <InfoSection color={'black'} key={Math.random()} />
       <button
         type='button'
         onClick={handleClick}

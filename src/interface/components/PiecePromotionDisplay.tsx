@@ -8,7 +8,6 @@ const PiecePromotionDisplay = ({ notation }: PiecePromotionDisplayType) => {
     <div
       className='text-[50px] hover:bg-orange-950 rounded-md p-5 h-[70%]'
       onClick={() => {
-        console.log('click');
         setPromotionChoice(notation);
       }}
     >
