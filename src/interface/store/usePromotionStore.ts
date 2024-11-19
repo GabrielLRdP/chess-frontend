@@ -16,7 +16,6 @@ export const usePromotionStore = create<PromotionType>((set) => ({
     }));
   },
   setPromotionChoice: (arg) => {
-    console.log('appelée');
     set(() => ({
       promotionChoice: arg,
     }));

@@ -15,8 +15,6 @@ const usePawnPromotion = () => {
   const endTurn = useEndTurn();
 
   useEffect(() => {
-    // console.log('promotionChoice', promotionChoice);
-    // console.log('resolvePromotion', resolvePromotion);
     if (promotionChoice && selectedPiece && game) {
       setIsModalOpen(false);
 

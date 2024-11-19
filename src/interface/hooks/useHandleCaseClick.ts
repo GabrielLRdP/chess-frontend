@@ -69,9 +69,7 @@ const useHandleCaseClick = (
   const endTurn = useEndTurn();
 
   return () => {
-    console.log(selectedPiece);
     if (isMovePossible) {
-      console.log('coucou1');
       handleEnPassantCase();
       const { pawnPromotion, takenPiece, newPosition } =
         ChessBoardService.makeMove(
@@ -80,15 +78,13 @@ const useHandleCaseClick = (
           targetPosition
         );
       setPosition(newPosition);
-      console.log('ha');
       if (takenPiece) {
         const newTakenPiece = [...takenPieces];
         newTakenPiece.push(takenPiece as Piece);
         setTakenPieces(newTakenPiece);
       }
       if (pawnPromotion) {
-        const promotedPiece = promotePawn();
-        console.log(promotedPiece);
+        promotePawn();
         return;
       }
       endTurn(game);
