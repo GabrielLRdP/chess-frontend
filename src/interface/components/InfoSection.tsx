@@ -21,6 +21,7 @@ const InfoSection = ({ color }: TakenPiecesProps): ReactElement => {
       </div>
     );
   });
+  console.log(color, color === game?.playerTurn);
 
   return (
     <div className='flex justify-between w-[100%] pt-2 pb-1'>
@@ -28,7 +29,7 @@ const InfoSection = ({ color }: TakenPiecesProps): ReactElement => {
       {game && (
         <div
           className={`bg-${
-            game.playerTurn === color ? null : toggleColor(color)
+            game.playerTurn === toggleColor(color) ? toggleColor(color) : null
           } rounded-full h-[15px] w-[15px] p-[10px]`}
         ></div>
       )}
