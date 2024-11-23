@@ -1,12 +1,12 @@
 import ChessBoard from './components/ChessBoard';
-import ChessBoardContextProvider from './context/chessBoardContext';
+import { ChessBoardProvider } from './context/chessBoardContext';
 import './css/main.css';
 
 function App() {
   return (
-    <ChessBoardContextProvider>
+    <ChessBoardProvider>
       <ChessBoard />
-    </ChessBoardContextProvider>
+    </ChessBoardProvider>
   );
 }
 

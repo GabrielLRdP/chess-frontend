@@ -1,17 +1,31 @@
 import { createContext, ReactNode, useState } from 'react';
+import { Color } from '../../shared/types/global_types';
 
-// Création du contexte
-const ChessBoardContext = createContext({});
+// Définir le type du contexte
+export interface ChessBoardContextType {
+  caseSize: number;
+  setCaseSize: (size: number) => void;
+  side: Color;
+  setSide: (side: Color) => void;
+}
+
+// Création du contexte avec un type explicite
+const ChessBoardContext = createContext<ChessBoardContextType | undefined>(
+  undefined
+);
 
 // Provider pour le contexte
-const ChessBoardContextProvider = ({ children }: { children: ReactNode }) => {
+const ChessBoardProvider = ({ children }: { children: ReactNode }) => {
   const [caseSize, setCaseSize] = useState(10);
+  const [side, setSide] = useState<Color>('white');
 
   return (
-    <ChessBoardContext.Provider value={{ caseSize, setCaseSize }}>
+    <ChessBoardContext.Provider
+      value={{ caseSize, setCaseSize, side, setSide }}
+    >
       {children}
     </ChessBoardContext.Provider>
   );
 };
 
-export default ChessBoardContextProvider;
+export { ChessBoardContext, ChessBoardProvider };

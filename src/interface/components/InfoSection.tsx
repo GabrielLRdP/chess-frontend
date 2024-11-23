@@ -21,7 +21,6 @@ const InfoSection = ({ color }: TakenPiecesProps): ReactElement => {
       </div>
     );
   });
-  console.log(color, color === game?.playerTurn);
 
   return (
     <div className='flex justify-between w-[100%] pt-2 pb-1'>
