@@ -76,13 +76,16 @@ export class King extends Piece {
     return result;
   }
 
-  public isInCheck(position: Array<Piece | null>) {
+  public isInCheck(
+    position: Array<Piece | null>,
+    enPassantCase: Position | null
+  ) {
     const adversaryColor = this.color === 'white' ? 'black' : 'white';
     return position.some((element) => {
       if (element?.color) {
         return (
           element.color === adversaryColor &&
-          element.getRange(position).some((e) => {
+          element.getRange(position, enPassantCase).some((e) => {
             return e[0] === this.position[0] && e[1] === this.position[1];
           })
         );
@@ -90,5 +93,26 @@ export class King extends Piece {
         return false;
       }
     });
+  }
+
+  public isCheckMate(
+    position: Array<Piece | null>,
+    enPassantCase: Position | null
+  ) {
+    const isInCheck = this.isInCheck(position, enPassantCase);
+    if (!isInCheck) {
+      return false;
+    }
+    const canAnOtherPieceMove = position.some((element) => {
+      return (
+        element?.color === this.color &&
+        element?.getLegalMoves(position, enPassantCase).length > 0
+      );
+    });
+
+    if (!canAnOtherPieceMove) {
+      return true;
+    }
+    return false;
   }
 }

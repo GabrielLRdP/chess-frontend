@@ -41,7 +41,7 @@ export abstract class Piece {
       const wouldKingBeInCheck = getKing(
         potentialPosition,
         this.color
-      ).isInCheck(potentialPosition);
+      ).isInCheck(potentialPosition, enPassantCase);
       return !wouldKingBeInCheck;
     });
 
