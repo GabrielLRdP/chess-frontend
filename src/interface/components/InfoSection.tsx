@@ -8,6 +8,9 @@ import { toggleColor } from '../../shared/utils/toggleColor';
 const InfoSection = ({ color }: TakenPiecesProps): ReactElement => {
   const { game } = useGameStore();
   const { takenPieces } = useTakenPiecesStore();
+
+  const backGroundColor =
+    game?.playerTurn === toggleColor(color) ? toggleColor(color) : null;
   const filteredTakenPieces = takenPieces
     .filter((element) => element.color === color)
     .sort((a, b) => {
@@ -27,9 +30,7 @@ const InfoSection = ({ color }: TakenPiecesProps): ReactElement => {
       <div className='flex gap-[7px] h-[30px] '>{takenPiecesComponents}</div>
       {game && (
         <div
-          className={`bg-${
-            game.playerTurn === toggleColor(color) ? toggleColor(color) : null
-          } rounded-full h-[15px] w-[15px] p-[10px]`}
+          className={`bg-${backGroundColor} rounded-full h-[15px] w-[15px] p-[10px]`}
         ></div>
       )}
     </div>
