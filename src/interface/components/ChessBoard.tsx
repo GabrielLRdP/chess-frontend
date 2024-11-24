@@ -43,6 +43,8 @@ const ChessBoard = (): ReactElement => {
     setTakenPieces([]);
   };
 
+  console.log('game status: ', game?.status);
+
   return (
     <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[100px]'>
       {isModalOpen && <PromotionModal />}
