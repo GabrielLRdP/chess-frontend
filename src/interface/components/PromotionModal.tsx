@@ -13,7 +13,7 @@ const PromotionModal = () => {
   });
 
   return (
-    <div className='absolute w-[100%] h-[100%]  flex justify-center'>
+    <div className='absolute w-[100%] h-[100%] z-20 flex justify-center'>
       <div className=' flex items-center justify-evenly absolute w-[80%] h-[20%] top-40 bg-orange-800 rounded-lg'>
         {inconsToDisplay}
       </div>

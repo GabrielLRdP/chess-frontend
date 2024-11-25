@@ -26,11 +26,13 @@ export const useEndTurn = () => {
     };
     const blackKing = getKing(currentPosition, 'black');
     const whiteKing = getKing(currentPosition, 'white');
-    if (
-      blackKing.isCheckMate(currentPosition, game.enPassantCase) ||
-      whiteKing.isCheckMate(currentPosition, game.enPassantCase)
-    ) {
+    if (blackKing.isCheckMate(currentPosition, game.enPassantCase)) {
       updatedGame.status = 'over';
+      updatedGame.result = 'whiteWins';
+    }
+    if (whiteKing.isCheckMate(currentPosition, game.enPassantCase)) {
+      updatedGame.status = 'over';
+      updatedGame.result = 'blackWins';
     }
     setGame(updatedGame);
   };

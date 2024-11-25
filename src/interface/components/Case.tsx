@@ -3,6 +3,8 @@ import { Color } from '../../shared/types/global_types';
 import { Piece } from '../../domain/entities/piece/Piece';
 import useHandleCaseClick from '../hooks/useHandleCaseClick';
 import AllowedMoveOverlay from './AllowedMoveOverlay';
+import { useGameStore } from '../store/useGameStore';
+import { EndGameBagdeFactory } from '../functions/endGameBadgeFactory';
 
 const Case = ({
   color,
@@ -12,6 +14,13 @@ const Case = ({
   legalMoveDisplay,
 }: CaseProps): ReactElement => {
   const isThereAPiece = piece !== null;
+  const { game } = useGameStore();
+  let badge = null;
+
+  if (pieceObject?.notation.toLowerCase() === 'k') {
+    const badgeFactory = new EndGameBagdeFactory();
+    badge = badgeFactory.createBadge(game?.result, pieceObject?.notation);
+  }
 
   const handleClick = useHandleCaseClick(pieceObject, index);
 
@@ -19,13 +28,14 @@ const Case = ({
     <div
       className={`${
         color === 'black' ? 'bg-orange-900' : 'bg-orange-400'
-      } w-[60px] h-[60px] text-[30px] flex items-center justify-center border border-transparent hover:border-amber-400 overflow-hidden`}
+      } relative w-[60px] h-[60px] text-[30px] flex items-center justify-center border border-transparent hover:border-amber-400 overflow-hidden`}
       onClick={handleClick}
     >
       {piece}
       {legalMoveDisplay ? (
         <AllowedMoveOverlay isThereAPiece={isThereAPiece} />
       ) : null}
+      {badge}
     </div>
   );
 };
