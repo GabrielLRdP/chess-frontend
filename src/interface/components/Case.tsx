@@ -17,7 +17,7 @@ const Case = ({
   const { game } = useGameStore();
   let badge = null;
 
-  if (pieceObject?.notation.toLowerCase() === 'k') {
+  if (pieceObject?.notation.toLowerCase() === 'k' && game?.status === 'over') {
     const badgeFactory = new EndGameBagdeFactory();
     badge = badgeFactory.createBadge(game?.result, pieceObject?.notation);
   }

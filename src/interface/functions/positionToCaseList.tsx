@@ -9,7 +9,8 @@ import { indexToCoord } from '../../shared/utils/indexToCoord';
 const positionToCaselist = (
   translatedPosition: Array<ReactElement | null>,
   position: Array<Piece | null>,
-  legalMoves: Position[]
+  legalMoves: Position[],
+  side: Color
 ) => {
   const caseList = [];
   let color: Color = 'white';
@@ -37,7 +38,8 @@ const positionToCaselist = (
       casePosition[1]--;
     }
   }
-  return [...caseList];
+  const result = [...caseList];
+  return side === 'white' ? result : result.reverse();
 };
 
 export default positionToCaselist;
