@@ -18,6 +18,8 @@ const useHandleCaseClick = (): ((
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const { takenPieces, setTakenPieces } = useTakenPiecesStore();
   const { game, setGame } = useGameStore();
+  const promotePawn = usePawnPromotion();
+  const endTurn = useEndTurn();
   const [enPassantCase, setEnPassantCase] = useState<Position | null>(
     game ? game.enPassantCase : null
   );
@@ -25,8 +27,6 @@ const useHandleCaseClick = (): ((
     game?.initialFen && setGame({ ...game, enPassantCase: enPassantCase });
   }, [enPassantCase]);
 
-  const promotePawn = usePawnPromotion();
-  const endTurn = useEndTurn();
   return (targetPiece: Piece | null, targetIndex: number) => {
     const targetPosition = indexToCoord(targetIndex);
 
