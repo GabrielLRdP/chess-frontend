@@ -1,5 +1,9 @@
 import { ReactElement } from 'react';
-import { faHashtag, faCrown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHashtag,
+  faCrown,
+  faEquals,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Result } from '../../shared/types/global_types';
 export class EndGameBagdeFactory {
@@ -7,23 +11,37 @@ export class EndGameBagdeFactory {
     gameResult: Result | undefined,
     pieceNotation: string | undefined
   ): ReactElement | null {
-    if (
-      gameResult === null ||
-      gameResult === 'draw' ||
-      !pieceNotation ||
-      pieceNotation.toLowerCase() !== 'k'
-    ) {
+    if (!gameResult || !pieceNotation || pieceNotation.toLowerCase() !== 'k') {
       return null;
     }
     const winner = gameResult === 'whiteWins' ? 'white' : 'black';
     const pieceColor =
       pieceNotation.toLowerCase() !== pieceNotation ? 'white' : 'black';
-    const result = winner === pieceColor ? 'win' : 'lose';
+
+    const icons = {
+      win: faCrown,
+      lose: faHashtag,
+      draw: faEquals,
+    };
+
+    let badgeIcon;
+    let background;
+    let rotate;
+
+    if (gameResult === 'draw') {
+      badgeIcon = icons.draw;
+      background = 'bg-gray-200';
+    } else {
+      const didIWin = winner === pieceColor;
+      badgeIcon = didIWin ? icons.win : icons.lose;
+      background = didIWin ? 'bg-yellow-300' : 'bg-gray-600';
+      rotate = didIWin && '12';
+    }
 
     const props = {
-      badgeIcon: result === 'win' ? faCrown : faHashtag,
-      background: result === 'win' ? 'bg-yellow-300' : 'bg-gray-200',
-      rotate: result === 'win' ? '12' : 'O',
+      badgeIcon: badgeIcon,
+      background: background,
+      rotate: rotate,
     };
 
     return (

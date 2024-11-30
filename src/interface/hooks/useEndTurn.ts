@@ -24,15 +24,18 @@ export const useEndTurn = () => {
           ? 'onGoing'
           : game.status,
     };
-    const blackKing = getKing(currentPosition, 'black');
-    const whiteKing = getKing(currentPosition, 'white');
-    if (blackKing.isCheckMate(currentPosition, game.enPassantCase)) {
+    const oppositeKing = getKing(currentPosition, toggleColor(game.playerTurn));
+    if (oppositeKing.isCheckMate(currentPosition, game.enPassantCase)) {
       updatedGame.status = 'over';
       updatedGame.result = 'whiteWins';
+      setGame(updatedGame);
+      return;
     }
-    if (whiteKing.isCheckMate(currentPosition, game.enPassantCase)) {
+    if (!oppositeKing.canAnyTeamMateMove(currentPosition, game.enPassantCase)) {
       updatedGame.status = 'over';
-      updatedGame.result = 'blackWins';
+      updatedGame.result = 'draw';
+      setGame(updatedGame);
+      return;
     }
     setGame(updatedGame);
   };

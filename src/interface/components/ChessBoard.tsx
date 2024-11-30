@@ -19,7 +19,7 @@ const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
   const { currentPosition, setPosition, setInitialPosition } =
     usePositionStore();
-  const defaultInitialFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR';
+  const defaultInitialFen = '8/5K2/7p/7k/6p1/8/2Q1BB2/8';
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const { setTakenPieces } = useTakenPiecesStore();
   const { game, setGame } = useGameStore();

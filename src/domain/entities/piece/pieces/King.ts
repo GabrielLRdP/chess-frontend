@@ -2,7 +2,6 @@ import { Position, Color } from '../../../../shared/types/global_types.ts';
 import { Piece } from '../Piece.ts';
 import { isThereAPiece } from '../../../../shared/utils/isThereAPiece.ts';
 import { coordToIndex } from '../../../../shared/utils/coordToIndex.ts';
-import { canAnyPieceMove } from '../../../utils/canAnyPieceMove.ts';
 
 export class King extends Piece {
   constructor(color: Color, position: Position) {
@@ -104,9 +103,8 @@ export class King extends Piece {
     if (!isInCheck) {
       return false;
     }
-    const canAnOtherPieceMove = canAnyPieceMove(
+    const canAnOtherPieceMove = this.canAnyTeamMateMove(
       position,
-      this.color,
       enPassantCase
     );
 
@@ -115,4 +113,16 @@ export class King extends Piece {
     }
     return false;
   }
+
+  public canAnyTeamMateMove = (
+    position: Array<Piece | null>,
+    enPassantCase: Position | null
+  ): boolean => {
+    return position.some((element) => {
+      return (
+        element?.color === this.color &&
+        element?.getLegalMoves(position, enPassantCase).length > 0
+      );
+    });
+  };
 }
