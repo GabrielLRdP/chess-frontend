@@ -10,10 +10,10 @@ import { Position } from '../../shared/types/global_types';
 import usePawnPromotion from './usePawnPromotion';
 import { useEndTurn } from './useEndTurn';
 
-const useHandleCaseClick = (
+const useHandleCaseClick = (): ((
   targetPiece: Piece | null,
   targetIndex: number
-): (() => void) => {
+) => void) => {
   const { currentPosition, setPosition } = usePositionStore();
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const { takenPieces, setTakenPieces } = useTakenPiecesStore();
@@ -21,54 +21,53 @@ const useHandleCaseClick = (
   const [enPassantCase, setEnPassantCase] = useState<Position | null>(
     game ? game.enPassantCase : null
   );
-  const targetPosition = indexToCoord(targetIndex);
-
   useEffect(() => {
     game?.initialFen && setGame({ ...game, enPassantCase: enPassantCase });
   }, [enPassantCase]);
 
-  const handleEnPassantCase = () => {
-    if (
-      selectedPiece?.notation.toLowerCase() === 'p' &&
-      Math.abs(targetPosition[1] - selectedPiece.position[1]) === 2
-    ) {
-      const dir = selectedPiece.color === 'white' ? 1 : -1;
-      setEnPassantCase([
-        selectedPiece.position[0],
-        selectedPiece.position[1] + dir,
-      ]);
-    } else {
-      setEnPassantCase(null);
-    }
-  };
-
-  const handleNewSelectedCase = () => {
-    if (
-      selectedPiece?.position[0] === targetPiece?.position[0] &&
-      selectedPiece?.position[1] === targetPiece?.position[1]
-    ) {
-      setSelectedPiece(null);
-    } else {
-      setSelectedPiece(targetPiece);
-    }
-  };
-
-  const isMovePossible =
-    selectedPiece &&
-    selectedPiece.color !== targetPiece?.color &&
-    game?.playerTurn === selectedPiece.color &&
-    selectedPiece
-      .getLegalMoves(currentPosition, game.enPassantCase)
-      .some((element) => {
-        return (
-          element[0] === targetPosition[0] && element[1] === targetPosition[1]
-        );
-      });
-
   const promotePawn = usePawnPromotion();
   const endTurn = useEndTurn();
+  return (targetPiece: Piece | null, targetIndex: number) => {
+    const targetPosition = indexToCoord(targetIndex);
 
-  return () => {
+    const handleEnPassantCase = () => {
+      if (
+        selectedPiece?.notation.toLowerCase() === 'p' &&
+        Math.abs(targetPosition[1] - selectedPiece.position[1]) === 2
+      ) {
+        const dir = selectedPiece.color === 'white' ? 1 : -1;
+        setEnPassantCase([
+          selectedPiece.position[0],
+          selectedPiece.position[1] + dir,
+        ]);
+      } else {
+        setEnPassantCase(null);
+      }
+    };
+
+    const handleNewSelectedCase = () => {
+      if (
+        selectedPiece?.position[0] === targetPiece?.position[0] &&
+        selectedPiece?.position[1] === targetPiece?.position[1]
+      ) {
+        setSelectedPiece(null);
+      } else {
+        setSelectedPiece(targetPiece);
+      }
+    };
+
+    const isMovePossible =
+      selectedPiece &&
+      selectedPiece.color !== targetPiece?.color &&
+      game?.playerTurn === selectedPiece.color &&
+      selectedPiece
+        .getLegalMoves(currentPosition, game.enPassantCase)
+        .some((element) => {
+          return (
+            element[0] === targetPosition[0] && element[1] === targetPosition[1]
+          );
+        });
+
     if (isMovePossible) {
       handleEnPassantCase();
       const { pawnPromotion, takenPiece, newPosition } =

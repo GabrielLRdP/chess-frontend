@@ -1,7 +1,6 @@
 import { ReactElement } from 'react';
 import { Color } from '../../shared/types/global_types';
 import { Piece } from '../../domain/entities/piece/Piece';
-import useHandleCaseClick from '../hooks/useHandleCaseClick';
 import AllowedMoveOverlay from './AllowedMoveOverlay';
 import { useGameStore } from '../store/useGameStore';
 import { EndGameBagdeFactory } from '../functions/endGameBadgeFactory';
@@ -12,6 +11,7 @@ const Case = ({
   pieceObject,
   index,
   legalMoveDisplay,
+  handleClick,
 }: CaseProps): ReactElement => {
   const isThereAPiece = piece !== null;
   const { game } = useGameStore();
@@ -22,19 +22,15 @@ const Case = ({
     badge = badgeFactory.createBadge(game?.result, pieceObject?.notation);
   }
 
-  const handleClick = useHandleCaseClick(pieceObject, index);
-
   return (
     <div
       className={`${
         color === 'black' ? 'bg-orange-900' : 'bg-orange-400'
       } relative w-[60px] h-[60px] text-[30px] flex items-center justify-center border border-transparent hover:border-amber-400 overflow-hidden`}
-      onClick={handleClick}
+      onClick={() => handleClick(pieceObject, index)}
     >
       {piece}
-      {legalMoveDisplay ? (
-        <AllowedMoveOverlay isThereAPiece={isThereAPiece} />
-      ) : null}
+      {legalMoveDisplay && <AllowedMoveOverlay isThereAPiece={isThereAPiece} />}
       {badge}
     </div>
   );
@@ -48,4 +44,5 @@ type CaseProps = {
   pieceObject: Piece | null;
   index: number;
   legalMoveDisplay: boolean;
+  handleClick: (targetPiece: Piece | null, targetIndex: number) => void;
 };

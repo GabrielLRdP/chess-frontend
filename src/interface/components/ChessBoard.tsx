@@ -13,6 +13,7 @@ import PromotionModal from './PromotionModal';
 import { usePromotionStore } from '../store/usePromotionStore';
 import useChessBoardContext from '../hooks/useChessBoardContext';
 import { toggleColor } from '../../shared/utils/toggleColor';
+import useHandleCaseClick from '../hooks/useHandleCaseClick';
 
 const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
@@ -24,6 +25,7 @@ const ChessBoard = (): ReactElement => {
   const { game, setGame } = useGameStore();
   const { isModalOpen } = usePromotionStore();
   const { side, setSide } = useChessBoardContext();
+  const handleCaseClick = useHandleCaseClick();
 
   useEffect(() => {
     let legalMoves: Position[] = [];
@@ -34,7 +36,15 @@ const ChessBoard = (): ReactElement => {
       );
     }
     const icons = positionToIcons(currentPosition);
-    setCaseList(positionToCaseList(icons, currentPosition, legalMoves, side));
+    setCaseList(
+      positionToCaseList(
+        icons,
+        currentPosition,
+        legalMoves,
+        side,
+        handleCaseClick
+      )
+    );
   }, [currentPosition, selectedPiece, side]);
 
   const handleClick = () => {

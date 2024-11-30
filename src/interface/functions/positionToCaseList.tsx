@@ -10,7 +10,8 @@ const positionToCaselist = (
   translatedPosition: Array<ReactElement | null>,
   position: Array<Piece | null>,
   legalMoves: Position[],
-  side: Color
+  side: Color,
+  handleCaseClick: (targetPiece: Piece | null, targetIndex: number) => void
 ) => {
   const caseList = [];
   let color: Color = 'white';
@@ -23,6 +24,7 @@ const positionToCaselist = (
         pieceObject={position[i]}
         index={i}
         key={color + position + i}
+        handleClick={handleCaseClick}
         legalMoveDisplay={legalMoves.some((element) => {
           return (
             element[0] === casePosition[0] && element[1] === casePosition[1]
