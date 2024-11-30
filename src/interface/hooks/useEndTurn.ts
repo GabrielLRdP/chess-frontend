@@ -12,18 +12,25 @@ export const useEndTurn = () => {
   const { setGame } = useGameStore();
   const { currentPosition } = usePositionStore();
 
-  return (game: Game) => {
+  return (game: Game, resetMoveCount: boolean) => {
     setPromotionChoice(null);
     setSelectedPiece(null);
     const updatedGame = {
       ...game,
       playerTurn: toggleColor(game.playerTurn),
       turn: selectedPiece?.color === 'black' ? game.turn + 1 : game.turn,
+      halfMoves: resetMoveCount ? 0 : game.halfMoves + 1,
       status:
         game.turn === 1 && game.playerTurn === 'white'
           ? 'onGoing'
           : game.status,
     };
+    if (updatedGame.halfMoves >= 50) {
+      updatedGame.status = 'over';
+      updatedGame.result = 'draw';
+      setGame(updatedGame);
+      return;
+    }
     const oppositeKing = getKing(currentPosition, toggleColor(game.playerTurn));
     if (oppositeKing.isCheckMate(currentPosition, game.enPassantCase)) {
       updatedGame.status = 'over';

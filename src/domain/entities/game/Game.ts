@@ -19,4 +19,5 @@ export class Game {
   public lastMove: Position | null = null;
   public status: GameStatus = 'notStarted';
   public result: Result = null;
+  public halfMoves = parseInt(this.initialFen.split(' ')[4]);
 }

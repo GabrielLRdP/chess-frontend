@@ -26,7 +26,6 @@ const useHandleCaseClick = (): ((
   useEffect(() => {
     game?.initialFen && setGame({ ...game, enPassantCase: enPassantCase });
   }, [enPassantCase]);
-
   return (targetPiece: Piece | null, targetIndex: number) => {
     const targetPosition = indexToCoord(targetIndex);
 
@@ -86,7 +85,9 @@ const useHandleCaseClick = (): ((
         promotePawn();
         return;
       }
-      endTurn(game);
+      const resetMoveCount =
+        takenPiece !== null || selectedPiece.notation.toLowerCase() === 'p';
+      endTurn(game, resetMoveCount);
     }
     handleNewSelectedCase();
   };

@@ -60,6 +60,8 @@ const ChessBoard = (): ReactElement => {
     setSide(toggleColor(side));
   };
 
+  game && console.log('halfMoves : ', game.halfMoves);
+
   return (
     <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[100px]'>
       {isModalOpen && <PromotionModal />}
