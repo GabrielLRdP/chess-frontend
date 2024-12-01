@@ -5,6 +5,7 @@ import { toggleColor } from '../../shared/utils/toggleColor';
 import { Game } from '../../domain/entities/game/Game';
 import { usePositionStore } from '../store/usePositionStore';
 import { getKing } from '../../shared/utils/getKing';
+import { positionToSimplifiedFen } from '../functions/positionToFen';
 
 export const useEndTurn = () => {
   const { setPromotionChoice } = usePromotionStore();
@@ -15,6 +16,7 @@ export const useEndTurn = () => {
   return (game: Game, resetMoveCount: boolean) => {
     setPromotionChoice(null);
     setSelectedPiece(null);
+
     const updatedGame = {
       ...game,
       playerTurn: toggleColor(game.playerTurn),
@@ -25,6 +27,25 @@ export const useEndTurn = () => {
           ? 'onGoing'
           : game.status,
     };
+    const simplifiedFen = positionToSimplifiedFen(currentPosition);
+    if (resetMoveCount) {
+      updatedGame.repetitionHistory.clear();
+    } else {
+      updatedGame.repetitionHistory.set(
+        simplifiedFen,
+        (updatedGame.repetitionHistory.get(simplifiedFen) || 0) + 1
+      );
+    }
+
+    const repetitionCount =
+      updatedGame.repetitionHistory.get(simplifiedFen) || 0;
+
+    if (repetitionCount >= 3) {
+      updatedGame.status = 'over';
+      updatedGame.result = 'draw';
+      setGame(updatedGame);
+      return;
+    }
     if (updatedGame.halfMoves >= 50) {
       updatedGame.status = 'over';
       updatedGame.result = 'draw';
@@ -34,7 +55,8 @@ export const useEndTurn = () => {
     const oppositeKing = getKing(currentPosition, toggleColor(game.playerTurn));
     if (oppositeKing.isCheckMate(currentPosition, game.enPassantCase)) {
       updatedGame.status = 'over';
-      updatedGame.result = 'whiteWins';
+      updatedGame.result =
+        game.playerTurn === 'white' ? 'whiteWins' : 'blackWins';
       setGame(updatedGame);
       return;
     }

@@ -20,4 +20,5 @@ export class Game {
   public status: GameStatus = 'notStarted';
   public result: Result = null;
   public halfMoves = parseInt(this.initialFen.split(' ')[4]);
+  public repetitionHistory: Map<string, number> = new Map();
 }

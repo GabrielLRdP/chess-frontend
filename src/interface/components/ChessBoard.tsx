@@ -27,6 +27,8 @@ const ChessBoard = (): ReactElement => {
   const { side, setSide } = useChessBoardContext();
   const handleCaseClick = useHandleCaseClick();
 
+  console.log(game?.repetitionHistory);
+
   useEffect(() => {
     let legalMoves: Position[] = [];
     if (selectedPiece) {
@@ -59,8 +61,6 @@ const ChessBoard = (): ReactElement => {
   const handleSwitchSide = () => {
     setSide(toggleColor(side));
   };
-
-  game && console.log('halfMoves : ', game.halfMoves);
 
   return (
     <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[100px]'>
