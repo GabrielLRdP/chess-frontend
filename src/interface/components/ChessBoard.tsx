@@ -27,8 +27,6 @@ const ChessBoard = (): ReactElement => {
   const { side, setSide } = useChessBoardContext();
   const handleCaseClick = useHandleCaseClick();
 
-  console.log(game?.repetitionHistory);
-
   useEffect(() => {
     let legalMoves: Position[] = [];
     if (selectedPiece) {
