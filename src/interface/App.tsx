@@ -1,12 +1,15 @@
-import ChessBoard from './components/ChessBoard';
-import { ChessBoardProvider } from './context/chessBoardContext';
-import './css/main.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ChessboardPage from './Pages/chessBoardPage/ChessBoardPage';
+import Header from './components/Header';
 
 function App() {
   return (
-    <ChessBoardProvider>
-      <ChessBoard />
-    </ChessBoardProvider>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path='/' element={<ChessboardPage />} />
+      </Routes>
+    </Router>
   );
 }
 

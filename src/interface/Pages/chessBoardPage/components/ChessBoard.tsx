@@ -1,19 +1,19 @@
 import { ReactElement, useEffect, useState } from 'react';
-import positionToIcons from '../functions/positionToIcons';
-import positionToCaseList from '../functions/positionToCaseList';
-import { ChessBoardService } from '../../application/services/ChesBoardService/ChessBoardService';
-import { usePositionStore } from '../store/usePositionStore';
-import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
-import { Position } from '../../shared/types/global_types';
+import positionToIcons from '../../../functions/positionToIcons';
+import positionToCaseList from '../../../functions/positionToCaseList';
+import { ChessBoardService } from '../../../../application/services/ChesBoardService/ChessBoardService';
+import { usePositionStore } from '../../../store/usePositionStore';
+import { useSelectedPieceStore } from '../../../store/useSelectedPieceStore';
+import { Position } from '../../../../shared/types/global_types';
 import InfoSection from './InfoSection';
-import { useTakenPiecesStore } from '../store/useTakenPiecesStore';
-import { useGameStore } from '../store/useGameStore';
-import { Game } from '../../domain/entities/game/Game';
+import { useTakenPiecesStore } from '../../../store/useTakenPiecesStore';
+import { useGameStore } from '../../../store/useGameStore';
+import { Game } from '../../../../domain/entities/game/Game';
 import PromotionModal from './PromotionModal';
-import { usePromotionStore } from '../store/usePromotionStore';
-import useChessBoardContext from '../hooks/useChessBoardContext';
-import { toggleColor } from '../../shared/utils/toggleColor';
-import useHandleCaseClick from '../hooks/useHandleCaseClick';
+import { usePromotionStore } from '../../../store/usePromotionStore';
+import useChessBoardContext from '../../../hooks/useChessBoardContext';
+import { toggleColor } from '../../../../shared/utils/toggleColor';
+import useHandleCaseClick from '../../../hooks/useHandleCaseClick';
 
 const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
@@ -61,7 +61,7 @@ const ChessBoard = (): ReactElement => {
   };
 
   return (
-    <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[100px]'>
+    <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[20px]'>
       {isModalOpen && <PromotionModal />}
       <InfoSection color={side} key={Math.random()} />
       <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden'>

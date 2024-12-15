@@ -1,5 +1,5 @@
-import { usePromotionStore } from '../store/usePromotionStore';
-import { PieceIconFactory } from '../functions/pieceIconFactory';
+import { usePromotionStore } from '../../../store/usePromotionStore';
+import { PieceIconFactory } from '../../../functions/pieceIconFactory';
 
 const PiecePromotionDisplay = ({ notation }: PiecePromotionDisplayType) => {
   const { setPromotionChoice } = usePromotionStore();

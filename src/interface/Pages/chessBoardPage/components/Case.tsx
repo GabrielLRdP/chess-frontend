@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
-import { Color } from '../../shared/types/global_types';
-import { Piece } from '../../domain/entities/piece/Piece';
+import { Color } from '../../../../shared/types/global_types';
+import { Piece } from '../../../../domain/entities/piece/Piece';
 import AllowedMoveOverlay from './AllowedMoveOverlay';
-import { useGameStore } from '../store/useGameStore';
-import { EndGameBagdeFactory } from '../functions/endGameBadgeFactory';
+import { useGameStore } from '../../../store/useGameStore';
+import { EndGameBagdeFactory } from '../../../functions/endGameBadgeFactory';
 
 const Case = ({
   color,
