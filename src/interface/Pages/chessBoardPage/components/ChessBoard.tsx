@@ -14,6 +14,7 @@ import { usePromotionStore } from '../../../store/usePromotionStore';
 import useChessBoardContext from '../../../hooks/useChessBoardContext';
 import { toggleColor } from '../../../../shared/utils/toggleColor';
 import useHandleCaseClick from '../../../hooks/useHandleCaseClick';
+import PrimaryButton from '../../../components/generics/PrimaryButton';
 
 const ChessBoard = (): ReactElement => {
   const [caseList, setCaseList] = useState<Array<ReactElement>>([]);
@@ -64,25 +65,22 @@ const ChessBoard = (): ReactElement => {
     <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[20px]'>
       {isModalOpen && <PromotionModal />}
       <InfoSection color={side} key={Math.random()} />
-      <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden'>
+      <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden shadow-sm'>
         {caseList}
       </section>
       <InfoSection color={toggleColor(side)} key={Math.random()} />
-      <div className='flex gap-1'>
-        <button
+      <div className='flex space-x-4 w-full'>
+        <PrimaryButton
           type='button'
           onClick={handleClick}
-          className='w-[200px] mt-11 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
-        >
-          Initialiser l'échiquier
-        </button>
-        <button
+          label={`Nouvelle partie`}
+        />
+
+        <PrimaryButton
           type='button'
           onClick={handleSwitchSide}
-          className='w-[200px] mt-11 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
-        >
-          Tourner l'échiquier
-        </button>
+          label={`Tourner l'échiquier`}
+        />
       </div>
     </div>
   );

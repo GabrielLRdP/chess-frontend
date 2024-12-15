@@ -67,7 +67,7 @@ body {
   /* 1 */
   line-height: inherit;
   /* 2 */
-  background-color: #403d38;
+  background-color: #efefef;
 }
 
 /*
@@ -747,4 +747,16 @@ video {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
   }
+}
+
+/*
+CUSTOM
+*/
+
+/*
+HEADER
+*/
+.header-shadow {
+  -webkit-box-shadow: 0px 6px 7px -6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0px 6px 7px -6px rgba(0, 0, 0, 0.23);
 }
