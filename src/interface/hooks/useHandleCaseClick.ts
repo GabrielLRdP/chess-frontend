@@ -24,7 +24,8 @@ const useHandleCaseClick = (): ((
     game ? game.enPassantCase : null
   );
   useEffect(() => {
-    game?.initialFen && setGame({ ...game, enPassantCase: enPassantCase });
+    game !== undefined &&
+      setGame(game.update({ enPassantCase: enPassantCase }));
   }, [enPassantCase]);
   return (targetPiece: Piece | null, targetIndex: number) => {
     const targetPosition = indexToCoord(targetIndex);
