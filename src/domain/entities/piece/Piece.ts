@@ -12,12 +12,12 @@ export abstract class Piece {
   ) {}
   public hasMoved?: boolean;
   public previousPostion: Position = this.position;
-  getLegalMoves(
+  public getLegalMoves(
     position: Array<Piece | null>,
     enPassantCase: Position | null
   ): Array<Position> {
     const range = this.getRange(position, enPassantCase);
-    let legalMoves = range.filter((element) => {
+    const legalMoves = range.filter((element) => {
       const potentialPosition = position.map((e, index) => {
         if (
           e?.position[0] === this.position[0] &&
@@ -45,36 +45,39 @@ export abstract class Piece {
       return !wouldKingBeInCheck;
     });
 
-    const checkCastle = (direction: 'left' | 'right'): void => {
-      if (this.notation.toLowerCase() !== 'k') {
-        return;
-      }
-      let dir: number;
-      direction === 'right' ? (dir = 1) : (dir = -1);
-      if (
-        legalMoves.some(
-          (element) =>
-            element[0] === this.position[0] + 2 * dir &&
-            element[1] === this.position[1]
-        ) &&
-        !legalMoves.some(
-          (element) =>
-            element[0] === this.position[0] + dir &&
-            element[1] === this.position[1]
-        )
-      ) {
-        legalMoves = legalMoves.filter(
-          (element) =>
-            element[0] !== this.position[0] + 2 * dir &&
-            element[1] !== this.position[1]
-        );
-      }
-    };
-
-    checkCastle('left');
-    checkCastle('right');
+    this.checkCastle('left', legalMoves);
+    this.checkCastle('right', legalMoves);
 
     return legalMoves;
+  }
+
+  private checkCastle(
+    direction: 'left' | 'right',
+    legalMoves: Position[]
+  ): void {
+    if (this.notation.toLowerCase() !== 'k') {
+      return;
+    }
+    let dir: number;
+    direction === 'right' ? (dir = 1) : (dir = -1);
+    if (
+      legalMoves.some(
+        (element) =>
+          element[0] === this.position[0] + 2 * dir &&
+          element[1] === this.position[1]
+      ) &&
+      !legalMoves.some(
+        (element) =>
+          element[0] === this.position[0] + dir &&
+          element[1] === this.position[1]
+      )
+    ) {
+      legalMoves = legalMoves.filter(
+        (element) =>
+          element[0] !== this.position[0] + 2 * dir &&
+          element[1] !== this.position[1]
+      );
+    }
   }
 
   abstract getRange(

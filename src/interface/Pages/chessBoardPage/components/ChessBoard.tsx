@@ -65,7 +65,7 @@ const ChessBoard = (): ReactElement => {
     <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[20px]'>
       {isModalOpen && <PromotionModal />}
       <InfoSection color={side} key={Math.random()} />
-      <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden shadow-sm'>
+      <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden shadow-lg'>
         {caseList}
       </section>
       <InfoSection color={toggleColor(side)} key={Math.random()} />
