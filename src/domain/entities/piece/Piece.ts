@@ -35,9 +35,7 @@ export abstract class Piece {
         )
       ) {
         legalMoves = legalMoves.filter(
-          (element) =>
-            element[0] !== this.position[0] + 2 * dir &&
-            element[1] !== this.position[1]
+          (element) => element[0] !== this.position[0] + 2 * dir
         );
       }
     };
