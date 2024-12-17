@@ -32,7 +32,7 @@ const usePawnPromotion = () => {
             pieceObject
           );
           setPosition(updatedPosition);
-          endTurn(game);
+          endTurn(game, true);
         }
       }
     }
