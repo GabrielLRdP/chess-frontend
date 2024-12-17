@@ -37,42 +37,43 @@ export class King extends Piece {
       }
     });
 
-    const castleMoves = (): Position[] => {
-      if (this.hasMoved) {
-        return [];
+    result = result.concat(this.castleMoves(position));
+
+    return result;
+  }
+
+  private castleMoves(position: Array<Piece | null>): Position[] {
+    if (this.hasMoved) {
+      return [];
+    }
+    let result: Position[] = [];
+    result = result.concat(this.checkDirection('right', position));
+    result = result.concat(this.checkDirection('left', position));
+    return result;
+  }
+
+  private checkDirection(
+    direction: 'left' | 'right',
+    position: Array<Piece | null>
+  ): number[][] {
+    const result = [];
+    let i = 1;
+    let dir;
+    direction === 'right' ? (dir = 1) : (dir = -1);
+    while (this.position[0] + i * dir >= 0 && this.position[0] + i * dir < 8) {
+      const pieceToCheck =
+        position[coordToIndex([this.position[0] + i * dir, this.position[1]])];
+      if (
+        pieceToCheck?.notation.toLowerCase() === 'r' &&
+        pieceToCheck.color === this.color &&
+        !pieceToCheck.hasMoved
+      ) {
+        result.push([this.position[0] + 2 * dir, this.position[1]]);
+      } else if (pieceToCheck !== null) {
+        break;
       }
-      const result: Position[] = [];
-      const checkDirection = (direction: 'left' | 'right'): void => {
-        let i = 1;
-        let dir;
-        direction === 'right' ? (dir = 1) : (dir = -1);
-        while (
-          this.position[0] + i * dir >= 0 &&
-          this.position[0] + i * dir < 8
-        ) {
-          const pieceToCheck =
-            position[
-              coordToIndex([this.position[0] + i * dir, this.position[1]])
-            ];
-          if (
-            pieceToCheck?.notation.toLowerCase() === 'r' &&
-            pieceToCheck.color === this.color &&
-            !pieceToCheck.hasMoved
-          ) {
-            result.push([this.position[0] + 2 * dir, this.position[1]]);
-          } else if (pieceToCheck !== null) {
-            break;
-          }
-          i++;
-        }
-      };
-      checkDirection('right');
-      checkDirection('left');
-      return result;
-    };
-
-    result = result.concat(castleMoves());
-
+      i++;
+    }
     return result;
   }
 
