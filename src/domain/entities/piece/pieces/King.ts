@@ -43,7 +43,7 @@ export class King extends Piece {
   }
 
   private castleMoves(position: Array<Piece | null>): Position[] {
-    if (this.hasMoved) {
+    if (this.hasMoved || this.isInCheck(position, null)) {
       return [];
     }
     let result: Position[] = [];
@@ -83,7 +83,7 @@ export class King extends Piece {
   ) {
     const adversaryColor = this.color === 'white' ? 'black' : 'white';
     return position.some((element) => {
-      if (element?.color) {
+      if (element?.color && element.notation.toLowerCase() !== 'k') {
         return (
           element.color === adversaryColor &&
           element.getRange(position, enPassantCase).some((e) => {
