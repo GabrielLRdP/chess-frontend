@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChessboardPage from './Pages/chessBoardPage/ChessBoardPage';
-import Header from './components/Header';
+import Header from './components/header/Header';
 
 function App() {
   return (
