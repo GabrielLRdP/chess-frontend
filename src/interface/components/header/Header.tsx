@@ -2,8 +2,8 @@ import { ReactElement } from 'react';
 import { HeaderContextProvider } from '../../context/headerContext';
 import HeaderSignUpButton from './HeaderSignupButton';
 import HeaderLoginButton from './HeaderLoginButton';
-import SignUpModal from '../SignUpModal/SignupModal';
-import LoginModal from '../SignUpModal/LoginModal';
+import SignUpModal from '../ConnexionModals/SignupModal';
+import LoginModal from '../ConnexionModals/LoginModal';
 
 const Header = (): ReactElement => {
   return (

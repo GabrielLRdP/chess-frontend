@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import Modal from '../generics/Modal';
 import useHeaderContext from '../../hooks/useHeaderContext';
+import SignUpForm from './SignupForm';
 
 const SignUpModal = (): ReactElement => {
   const { isSignupModalOpen, setIsSignupModalOpen } = useHeaderContext();
@@ -13,7 +14,7 @@ const SignUpModal = (): ReactElement => {
       backgroundOpacity={50}
       closeButton
     >
-      <div>Signup</div>
+      <SignUpForm />
     </Modal>
   );
 };

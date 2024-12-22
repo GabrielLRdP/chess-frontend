@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import Modal from '../generics/Modal';
 import useHeaderContext from '../../hooks/useHeaderContext';
+import LoginForm from './LoginForm';
 
 const LoginModal = (): ReactElement => {
   const { isLoginModalOpen, setIsLoginModalOpen } = useHeaderContext();
@@ -13,7 +14,7 @@ const LoginModal = (): ReactElement => {
       backgroundOpacity={50}
       closeButton
     >
-      <div>Login</div>
+      <LoginForm />
     </Modal>
   );
 };
