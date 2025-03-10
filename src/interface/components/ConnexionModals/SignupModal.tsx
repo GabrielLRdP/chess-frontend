@@ -5,7 +5,7 @@ import SignUpForm from './SignupForm';
 
 const SignUpModal = (): ReactElement => {
   const { isSignupModalOpen, setIsSignupModalOpen } = useHeaderContext();
-
+  //TODO: Setup a sucess modal or a toaster when user creation succeeded
   return (
     <Modal
       isOpen={isSignupModalOpen}

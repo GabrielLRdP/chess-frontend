@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Spinner from '../generics/Spinner';
 import useFetch from '../../hooks/useFetch';
 import useHeaderContext from '../../hooks/useHeaderContext';
@@ -13,10 +13,16 @@ const SignUpForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const { setIsSignupModalOpen } = useHeaderContext();
   const { execute, loading, error, status } = useFetch();
-  useMemo(() => {
-    setErrorMessage(error);
+
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(
+        typeof error === 'string' ? error : 'Une erreur est survenue.'
+      );
+    }
   }, [error]);
-  useMemo(() => {
+
+  useEffect(() => {
     if (status === 'success') {
       setIsSignupModalOpen(false);
     }
@@ -29,7 +35,6 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const { username, password, confirmPassword } = formData;
     const request = { userName: username, password };
 
@@ -101,6 +106,7 @@ const SignUpForm = () => {
           type='password'
           id='confirmPassword'
           name='confirmPassword'
+          autoComplete='new-password'
           value={formData.confirmPassword}
           onChange={handleChange}
           className='w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary text-primary bg-secondary-lighter'
