@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import Spinner from '../generics/Spinner';
+import useFetch from '../../hooks/useFetch';
+import useHeaderContext from '../../hooks/useHeaderContext';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -7,39 +10,50 @@ const SignUpForm = () => {
     confirmPassword: '',
   });
 
-  const [error, setError] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const { setIsSignupModalOpen } = useHeaderContext();
+  const { execute, loading, error, status } = useFetch();
+  useMemo(() => {
+    setErrorMessage(error);
+  }, [error]);
+  useMemo(() => {
+    if (status === 'success') {
+      setIsSignupModalOpen(false);
+    }
+  }, [status, setIsSignupModalOpen]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const { username, password, confirmPassword } = formData;
+    const request = { userName: username, password };
 
     if (!username || !password || !confirmPassword) {
-      setError('Tous les champs sont obligatoires.');
+      setErrorMessage('Tous les champs sont obligatoires.');
       return;
     }
 
     if (password !== confirmPassword) {
-      setError('Les mots de passe ne correspondent pas.');
+      setErrorMessage('Les mots de passe ne correspondent pas.');
       return;
     }
-
-    setError('');
-    alert('Compte créé avec succès !');
+    await execute('http://localhost:3000/user/signup', 'post', request);
   };
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <form onSubmit={handleSubmit}>
       <h2 className='text-2xl text-primary font-bold mb-4 text-center'>
         Créer un compte
       </h2>
 
-      {error && <p className='text-red-500 mb-4'>{error}</p>}
+      {errorMessage && <p className='text-red-500 mb-4'>{errorMessage}</p>}
 
       <div className='mb-4'>
         <label
