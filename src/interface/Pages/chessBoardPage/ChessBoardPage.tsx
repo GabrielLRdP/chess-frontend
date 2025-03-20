@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { ChessBoardProvider } from '../../context/chessBoardContext';
+import { ChessBoardProvider } from '../../context/ChessBoardContext';
 import ChessBoard from './components/ChessBoard';
 
 const ChessboardPage = (): ReactElement => {

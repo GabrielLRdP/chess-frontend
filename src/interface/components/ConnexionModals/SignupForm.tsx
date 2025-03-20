@@ -47,7 +47,7 @@ const SignUpForm = () => {
       setErrorMessage('Les mots de passe ne correspondent pas.');
       return;
     }
-    await execute('http://localhost:3000/user/signup', 'post', request);
+    await execute('http://localhost:3000/users/signup', 'post', request);
   };
 
   return loading ? (

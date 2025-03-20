@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import {
   ChessBoardContext,
   ChessBoardContextType,
-} from '../context/chessBoardContext';
+} from '../context/ChessBoardContext';
 
 const useChessBoardContext = (): ChessBoardContextType => {
   const context = useContext(ChessBoardContext);

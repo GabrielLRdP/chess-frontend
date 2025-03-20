@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { HeaderContextProvider } from '../../context/headerContext';
+import { HeaderContextProvider } from '../../context/HeaderContext';
 import HeaderSignUpButton from './HeaderSignupButton';
 import HeaderLoginButton from './HeaderLoginButton';
 import SignUpModal from '../connexionModals/SignupModal';
