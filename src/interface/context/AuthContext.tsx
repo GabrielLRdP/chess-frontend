@@ -4,6 +4,8 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 export interface AuthContextType {
   userName: string | undefined;
   isAuthenticated: boolean;
+  login: () => void;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -14,23 +16,29 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const token = sessionStorage.getItem('accessToken');
     if (!token) {
-      setIsAuthenticated(false);
+      logout();
       return;
     }
     try {
       const decoded: tokenType = jwtDecode(token);
       setUserName(decoded.userName);
-      setIsAuthenticated(true);
+      login();
     } catch (error) {
       logout();
     }
-  }, []);
+  }, [isAuthenticated]);
+
+  const login = () => {
+    setIsAuthenticated(true);
+  };
 
   const logout = () => {
+    sessionStorage.removeItem('accessToken');
     setIsAuthenticated(false);
   };
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userName }}>
+    <AuthContext.Provider value={{ isAuthenticated, userName, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

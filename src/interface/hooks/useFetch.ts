@@ -1,21 +1,24 @@
 import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 import { httpMethod } from '../../shared/types/global_types';
-const useFetch = () => {
-  const [data, setData] = useState(null);
+
+const useFetch = <T>() => {
+  const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
   const [status, setStatus] = useState<string>('');
 
   const execute = async (
-    baseUrl: string,
     method: httpMethod,
-    body: Record<string, string>
+    body: Record<string, string>,
+    route: string,
+    baseUrl: string = import.meta.env.VITE_BASE_URL as string
   ) => {
     setLoading(true);
     setStatus('pending');
     try {
-      const res = await axios[method](baseUrl, body);
+      const res = await axios[method](baseUrl + route, body);
+
       setData(res.data);
       setStatus('success');
     } catch (err) {

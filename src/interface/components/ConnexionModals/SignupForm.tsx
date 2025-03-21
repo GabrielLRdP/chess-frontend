@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Spinner from '../generics/Spinner';
 import useFetch from '../../hooks/useFetch';
 import useHeaderContext from '../../hooks/useHeaderContext';
+import useAuthContext from '../../hooks/useAuthContext';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,9 @@ const SignUpForm = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
   const { setIsSignupModalOpen } = useHeaderContext();
-  const { execute, loading, error, status } = useFetch();
+  const { login } = useAuthContext();
+
+  const { execute: attemptSignup, loading, error, status } = useFetch();
 
   useEffect(() => {
     if (error) {
@@ -24,9 +27,10 @@ const SignUpForm = () => {
 
   useEffect(() => {
     if (status === 'success') {
+      login();
       setIsSignupModalOpen(false);
     }
-  }, [status, setIsSignupModalOpen]);
+  }, [status]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -47,7 +51,7 @@ const SignUpForm = () => {
       setErrorMessage('Les mots de passe ne correspondent pas.');
       return;
     }
-    await execute('http://localhost:3000/users/signup', 'post', request);
+    await attemptSignup('post', request, '/users/signup');
   };
 
   return loading ? (
