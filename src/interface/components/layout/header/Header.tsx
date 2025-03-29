@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
-import { HeaderContextProvider } from '../../context/HeaderContext';
-import SignUpModal from '../connexionModals/SignupModal';
-import LoginModal from '../connexionModals/LoginModal';
+import { HeaderContextProvider } from '../../../context/HeaderContext';
+import SignUpModal from '../../connexionModals/SignupModal';
+import LoginModal from '../../connexionModals/LoginModal';
 import HeaderButtonsSection from './HeaderButtonsSection';
 
 const Header = (): ReactElement => {

@@ -1,5 +1,5 @@
-import useHeaderContext from '../../hooks/useHeaderContext';
-import PrimaryButton from '../generics/PrimaryButton';
+import useHeaderContext from '../../../hooks/useHeaderContext';
+import PrimaryButton from '../../generics/PrimaryButton';
 import { ReactElement } from 'react';
 
 const HeaderSignUpButton = (): ReactElement => {

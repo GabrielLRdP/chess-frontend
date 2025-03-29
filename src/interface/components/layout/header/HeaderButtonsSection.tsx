@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import HeaderLoginButton from './HeaderLoginButton';
 import HeaderSignUpButton from './HeaderSignupButton';
 import HeaderLogOutButton from './HeaderLougoutButton';
-import useAuthContext from '../../hooks/useAuthContext';
+import useAuthContext from '../../../hooks/useAuthContext';
 
 const HeaderButtonsSection = (): ReactElement => {
   const { isAuthenticated, userData } = useAuthContext();
