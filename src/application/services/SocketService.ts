@@ -14,6 +14,8 @@ export class SocketService {
   }
 
   public connect(): void {
+    const token = sessionStorage.getItem('accessToken');
+    this.socket.auth = { token };
     if (!this.socket.connected) {
       this.socket.connect();
     }
