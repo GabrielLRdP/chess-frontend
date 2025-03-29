@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { fenToObjectTrad } from '../../application/services/ChesBoardService/fentoObjectTraductor';
-import { usePromotionStore } from '../store/usePromotionStore';
-import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
-import { usePositionStore } from '../store/usePositionStore';
+import { usePromotionStore } from '../stores/usePromotionStore';
+import { useSelectedPieceStore } from '../stores/useSelectedPieceStore';
+import { usePositionStore } from '../stores/usePositionStore';
 import { ChessBoardService } from '../../application/services/ChesBoardService/ChessBoardService';
 import { useEndTurn } from './useEndTurn';
-import { useGameStore } from '../store/useGameStore';
+import { useGameStore } from '../stores/useGameStore';
 
 const usePawnPromotion = () => {
   const { promotionChoice, setIsModalOpen } = usePromotionStore();

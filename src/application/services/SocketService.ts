@@ -18,6 +18,10 @@ export class SocketService {
     this.socket.auth = { token };
     if (!this.socket.connected) {
       this.socket.connect();
+      this.socket.emit('join-user-room', 'salut');
+      this.socket.on('update-user-list', (data) => {
+        console.log(data);
+      });
     }
   }
 

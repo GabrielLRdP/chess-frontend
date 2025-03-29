@@ -1,4 +1,4 @@
-import { usePromotionStore } from '../../../store/usePromotionStore';
+import { usePromotionStore } from '../../../stores/usePromotionStore';
 import { PieceIconFactory } from '../../../functions/pieceIconFactory';
 
 const PiecePromotionDisplay = ({ notation }: PiecePromotionDisplayType) => {

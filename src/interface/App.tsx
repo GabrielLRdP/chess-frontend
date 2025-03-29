@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ChessboardPage from './Pages/chessBoardPage/ChessBoardPage';
+import ChessboardPage from './pages/chessBoardPage/ChessBoardPage';
 import Header from './components/header/Header';
 import { AuthContextProvider } from './context/AuthContext';
 

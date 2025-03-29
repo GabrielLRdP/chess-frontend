@@ -1,9 +1,9 @@
-import { usePromotionStore } from '../store/usePromotionStore';
-import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
+import { usePromotionStore } from '../stores/usePromotionStore';
+import { useSelectedPieceStore } from '../stores/useSelectedPieceStore';
 import { toggleColor } from '../../shared/utils/toggleColor';
 import { Game } from '../../domain/entities/game/Game';
-import { usePositionStore } from '../store/usePositionStore';
-import { useGameStore } from '../store/useGameStore';
+import { usePositionStore } from '../stores/usePositionStore';
+import { useGameStore } from '../stores/useGameStore';
 
 export const useEndTurn = () => {
   const { setPromotionChoice } = usePromotionStore();
