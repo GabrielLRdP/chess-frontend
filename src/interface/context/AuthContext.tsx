@@ -1,28 +1,33 @@
 import { jwtDecode } from 'jwt-decode';
 import { createContext, ReactNode, useEffect, useState } from 'react';
+import { SocketService } from '../../application/services/SocketService';
 
 export interface AuthContextType {
-  userName: string | undefined;
+  userData: userData | undefined;
   isAuthenticated: boolean;
   login: () => void;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const socketService = new SocketService();
 
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userName, setUserName] = useState<string | undefined>(undefined);
+  const [userData, setUserData] = useState<userData | undefined>(undefined);
+
   useEffect(() => {
     const token = sessionStorage.getItem('accessToken');
+    console.log(token);
     if (!token) {
       logout();
       return;
     }
     try {
       const decoded: tokenType = jwtDecode(token);
-      setUserName(decoded.userName);
-      login();
+      setUserData({ userName: decoded.userName, userId: decoded.userId });
+
+      !isAuthenticated && login();
     } catch (error) {
       logout();
     }
@@ -30,15 +35,17 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const login = () => {
     setIsAuthenticated(true);
+    socketService.connect();
   };
 
   const logout = () => {
     sessionStorage.removeItem('accessToken');
     setIsAuthenticated(false);
+    socketService.disconnect();
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, userName, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, userData, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
@@ -47,5 +54,12 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 export { AuthContextProvider, AuthContext };
 
 type tokenType = {
+  iat: number;
   userName: string;
+  userId: string;
+};
+
+type userData = {
+  userName: string;
+  userId: string;
 };
