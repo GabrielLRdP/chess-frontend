@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import { faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
+import { faPeopleGroup, faUser } from '@fortawesome/free-solid-svg-icons';
 import MenuItem from './MenuItem';
 
 const SideBar = (): ReactElement => {
@@ -15,9 +15,16 @@ const SideBar = (): ReactElement => {
     >
       <ul className='flex flex-col gap-y-10 items-center py-24  '>
         <MenuItem
+          icon={faUser}
+          isExpanded={isExpanded}
+          label={'Echiquier libre'}
+          path={'/'}
+        />
+        <MenuItem
           icon={faPeopleGroup}
           isExpanded={isExpanded}
           label={'Jouer en ligne'}
+          path={'/players'}
         />
       </ul>
     </nav>

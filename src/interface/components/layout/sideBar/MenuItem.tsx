@@ -1,10 +1,21 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReactElement } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const MenuItem = ({ label, isExpanded, icon }: MenuItemProps): ReactElement => {
+const MenuItem = ({
+  label,
+  isExpanded,
+  icon,
+  path,
+}: MenuItemProps): ReactElement => {
+  const navigate = useNavigate();
+
   return (
-    <li className='flex items-center justify-center gap-3 w-[100%] max-h-10 p-2 cursor-pointer relative transition-transform duration-100 ease-out hover:-translate-y-1 active:translate-y-0'>
+    <li
+      className='flex items-center justify-center gap-3 w-[100%] max-h-10 p-2 cursor-pointer relative transition-transform duration-100 ease-out hover:-translate-y-1 active:translate-y-0'
+      onClick={() => navigate(path)}
+    >
       <FontAwesomeIcon
         icon={icon}
         className='text-secondary-lighter'
@@ -29,4 +40,5 @@ type MenuItemProps = {
   label: string;
   isExpanded: boolean;
   icon: IconDefinition;
+  path: string;
 };

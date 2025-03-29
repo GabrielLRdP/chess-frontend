@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChessboardPage from './pages/chessBoardPage/ChessBoardPage';
+import OnlinePlayersPage from './pages/onlinePlayersPage/OnlinePlayersPage';
 import { AuthContextProvider } from './context/AuthContext';
 import AppLayout from './components/layout/appLayout';
 
@@ -10,6 +11,7 @@ function App() {
         <AppLayout>
           <Routes>
             <Route path='/' element={<ChessboardPage />} />
+            <Route path='/players' element={<OnlinePlayersPage />} />
           </Routes>
         </AppLayout>
       </Router>

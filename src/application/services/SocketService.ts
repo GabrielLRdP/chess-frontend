@@ -18,10 +18,6 @@ export class SocketService {
     this.socket.auth = { token };
     if (!this.socket.connected) {
       this.socket.connect();
-      this.socket.emit('join-user-room', 'salut');
-      this.socket.on('update-user-list', (data) => {
-        console.log(data);
-      });
     }
   }
 
@@ -36,6 +32,7 @@ export class SocketService {
   }
 
   public emit<T>(event: string, data: T): void {
+    console.log('ici');
     this.socket.emit(event, data);
   }
 }
