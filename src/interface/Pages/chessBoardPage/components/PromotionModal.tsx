@@ -1,4 +1,4 @@
-import { useGameStore } from '../../../store/useGameStore';
+import { useGameStore } from '../../../stores/useGameStore';
 import PiecePromotionDisplay from './PiecePromotionDisplay';
 
 const PromotionModal = () => {

@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import { Color } from '../../../../shared/types/global_types';
-import { useTakenPiecesStore } from '../../../store/useTakenPiecesStore';
+import { useTakenPiecesStore } from '../../../stores/useTakenPiecesStore';
 import positionToIcons from '../../../functions/positionToIcons';
-import { useGameStore } from '../../../store/useGameStore';
+import { useGameStore } from '../../../stores/useGameStore';
 import { toggleColor } from '../../../../shared/utils/toggleColor';
 
 const InfoSection = ({ color }: TakenPiecesProps): ReactElement => {

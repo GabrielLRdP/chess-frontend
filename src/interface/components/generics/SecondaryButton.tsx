@@ -17,8 +17,6 @@ const SecondaryButton = ({
     width: 'w-full',
     additional: '',
   };
-
-  // Combine default options and tailwindOptions into a single string
   const classes = Object.values({ ...defaultOptions, ...tailwindOptions }).join(
     ' '
   );

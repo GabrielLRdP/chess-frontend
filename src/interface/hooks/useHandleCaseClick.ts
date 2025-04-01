@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { ChessBoardService } from '../../application/services/ChesBoardService/ChessBoardService';
 import { Piece } from '../../domain/entities/piece/Piece';
 import { indexToCoord } from '../../shared/utils/indexToCoord';
-import { useGameStore } from '../store/useGameStore';
-import { usePositionStore } from '../store/usePositionStore';
-import { useSelectedPieceStore } from '../store/useSelectedPieceStore';
-import { useTakenPiecesStore } from '../store/useTakenPiecesStore';
+import { useGameStore } from '../stores/useGameStore';
+import { usePositionStore } from '../stores/usePositionStore';
+import { useSelectedPieceStore } from '../stores/useSelectedPieceStore';
+import { useTakenPiecesStore } from '../stores/useTakenPiecesStore';
 import { Position } from '../../shared/types/global_types';
 import usePawnPromotion from './usePawnPromotion';
 import { useEndTurn } from './useEndTurn';
@@ -24,8 +24,10 @@ const useHandleCaseClick = (): ((
     game ? game.enPassantCase : null
   );
   useEffect(() => {
-    game !== undefined &&
-      setGame(game.update({ enPassantCase: enPassantCase }));
+    if (game?.status === 'onGoing') {
+      game.enPassantCase = enPassantCase;
+      setGame(game);
+    }
   }, [enPassantCase]);
   return (targetPiece: Piece | null, targetIndex: number) => {
     const targetPosition = indexToCoord(targetIndex);
