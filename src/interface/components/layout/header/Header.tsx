@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
-import { HeaderContextProvider } from '../../../context/HeaderContext';
-import SignUpModal from '../../connexionModals/SignupModal';
-import LoginModal from '../../connexionModals/LoginModal';
 import HeaderButtonsSection from './HeaderButtonsSection';
 import { useNavigate } from 'react-router-dom';
+import { HeaderContextProvider } from '../../../context/HeaderContext';
+import SignUpModal from '../../ConnexionModals/SignupModal';
+import LoginModal from '../../ConnexionModals/LoginModal';
 
 const Header = (): ReactElement => {
   const navigate = useNavigate();
