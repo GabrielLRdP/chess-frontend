@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import HeaderButtonsSection from './HeaderButtonsSection';
 import { useNavigate } from 'react-router-dom';
-import { HeaderContextProvider } from '../../../context/HeaderContext';
+import { HeaderContextProvider } from '../../../context/HeaderContext.tsx';
 import SignUpModal from '../../ConnexionModals/SignupModal';
 import LoginModal from '../../ConnexionModals/LoginModal';
 

@@ -1,18 +1,13 @@
 import { jwtDecode } from 'jwt-decode';
 import { createContext, ReactNode, useEffect, useState } from 'react';
-import { SocketService } from '../../application/services/SocketService';
-
 export interface AuthContextType {
   userData: userData | undefined;
   isAuthenticated: boolean;
   login: () => void;
   logout: () => void;
-  socketService: SocketService;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-const socketService = new SocketService();
-
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userData, setUserData] = useState<userData | undefined>(undefined);
@@ -36,19 +31,15 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   const login = () => {
     setIsAuthenticated(true);
-    socketService.connect();
   };
 
   const logout = () => {
     sessionStorage.removeItem('accessToken');
     setIsAuthenticated(false);
-    socketService.disconnect();
   };
 
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated, userData, login, logout, socketService }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated, userData, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

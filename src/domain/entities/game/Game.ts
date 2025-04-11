@@ -6,7 +6,6 @@ import {
 } from '../../../shared/types/global_types';
 import { Piece } from '../piece/Piece';
 import { getEnPassantCaseFromFen } from '../../utils/getEnpassantCaseFromFen';
-import { Piece } from '../piece/Piece';
 import { getKing } from '../../../shared/utils/getKing';
 
 export class Game {

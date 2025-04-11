@@ -1,9 +1,11 @@
 import { ReactElement, useEffect, useState } from 'react';
 import useAuthContext from '../../hooks/useAuthContext';
 import PlayerCard from './components/PlayerCard';
+import useSocketContext from '../../hooks/useSocketContext';
 
 const OnlinePlayersPage = () => {
-  const { socketService, userData } = useAuthContext();
+  const { userData } = useAuthContext();
+  const { socketService } = useSocketContext();
   const [userList, setUserList] = useState<ReactElement[] | null>();
 
   useEffect(() => {
