@@ -3,6 +3,8 @@ import Spinner from '../generics/Spinner';
 import useFetch from '../../hooks/useFetch';
 import useHeaderContext from '../../hooks/useHeaderContext';
 import useAuthContext from '../../hooks/useAuthContext';
+``;
+import { AuthResponse } from '../../../shared/types/server_responses';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +17,13 @@ const SignUpForm = () => {
   const { setIsSignupModalOpen } = useHeaderContext();
   const { login } = useAuthContext();
 
-  const { execute: attemptSignup, loading, error, status } = useFetch();
+  const {
+    execute: attemptSignup,
+    loading,
+    error,
+    status,
+    data,
+  } = useFetch<AuthResponse>();
 
   useEffect(() => {
     if (error) {
@@ -26,7 +34,8 @@ const SignUpForm = () => {
   }, [error]);
 
   useEffect(() => {
-    if (status === 'success') {
+    if (data && status === 'success') {
+      sessionStorage.setItem('accessToken', data.accessToken);
       login();
       setIsSignupModalOpen(false);
     }
