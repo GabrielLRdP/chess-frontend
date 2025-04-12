@@ -4,6 +4,7 @@ import Spinner from '../generics/Spinner';
 import { AuthResponse } from '../../../shared/types/server_responses';
 import useHeaderContext from '../../hooks/useHeaderContext';
 import useAuthContext from '../../hooks/useAuthContext';
+import { triggerToast } from '../../functions/toastFactory';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,6 @@ const LoginForm = () => {
   const [error, setError] = useState('');
   const { setIsLoginModalOpen } = useHeaderContext();
   const { login } = useAuthContext();
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -38,6 +38,7 @@ const LoginForm = () => {
       return;
     }
     await attemptLogin('post', formData, '/users/login');
+
     setError('');
   };
 
@@ -46,6 +47,7 @@ const LoginForm = () => {
       sessionStorage.setItem('accessToken', data.accessToken);
       login();
       setIsLoginModalOpen(false);
+      triggerToast('login');
     } else if (status === 'error') {
       setError(serverError);
     }
