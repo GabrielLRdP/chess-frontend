@@ -9,12 +9,23 @@ export const triggerToast = (type: ToastType) => {
       id={id}
       title={props.title}
       description={props.description}
-      button={{
-        label: props.button.label,
-        onClick: () => console.log('Button clicked'),
-      }}
+      button={
+        props.button && {
+          label: props.button.label,
+          onClick: () => console.log('Button clicked'),
+        }
+      }
     />
   ));
 };
 
-type ToastType = 'login';
+export type ToastType = 'login' | 'generic' | 'signup';
+export interface ToastProps {
+  id: string | number;
+  title: string;
+  description: string;
+  button?: {
+    label: string;
+    onClick: () => void;
+  };
+}

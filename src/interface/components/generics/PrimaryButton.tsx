@@ -10,7 +10,7 @@ const PrimaryButton = ({
   type = 'button',
 }: PrimaryButtonProps): ReactElement => {
   const defaultOptions = {
-    default: `font-sans rounded-md px-[20px]`,
+    default: `font-sans rounded-md px-[20px] whitespace-nowrap`,
     textSize: 'text-14-14',
     height: 'h-[40px]',
     fontWeight: 'font-bold',

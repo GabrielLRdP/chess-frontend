@@ -1,9 +1,24 @@
-import LoginToast from './LoginToast';
+import GenericToast from './GenericToast';
 import { toast as sonnerToast } from 'sonner';
+import { ToastProps, ToastType } from '../../functions/toastFactory';
 
-export const ToastMap = {
+export const ToastMap: Record<ToastType, ToastEntry> = {
   login: {
-    component: LoginToast,
+    component: GenericToast,
+    props: {
+      title: 'Vous êtes connecté !',
+      description: 'Vous pouvez maintenant jouer en ligne',
+    },
+  },
+  signup: {
+    component: GenericToast,
+    props: {
+      title: 'Inscription réussie, bienvenue parmi nous !',
+      description: 'Vous pouvez maintenant jouer en ligne',
+    },
+  },
+  generic: {
+    component: GenericToast,
     props: {
       title: 'This is a headless toast',
       description:
@@ -15,3 +30,8 @@ export const ToastMap = {
     },
   },
 };
+
+interface ToastEntry {
+  component: React.FC<ToastProps>;
+  props: Omit<ToastProps, 'id'>;
+}

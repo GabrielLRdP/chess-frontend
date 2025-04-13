@@ -5,6 +5,7 @@ import useHeaderContext from '../../hooks/useHeaderContext';
 import useAuthContext from '../../hooks/useAuthContext';
 ``;
 import { AuthResponse } from '../../../shared/types/server_responses';
+import { triggerToast } from '../../functions/toastFactory';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -37,6 +38,7 @@ const SignUpForm = () => {
     if (data && status === 'success') {
       sessionStorage.setItem('accessToken', data.accessToken);
       login();
+      triggerToast('signup');
       setIsSignupModalOpen(false);
     }
   }, [status]);
