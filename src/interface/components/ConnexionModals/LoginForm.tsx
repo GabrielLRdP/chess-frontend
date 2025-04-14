@@ -4,7 +4,7 @@ import Spinner from '../generics/Spinner';
 import { AuthResponse } from '../../../shared/types/server_responses';
 import useHeaderContext from '../../hooks/useHeaderContext';
 import useAuthContext from '../../hooks/useAuthContext';
-import { triggerToast } from '../../functions/toastFactory';
+import { triggerToast } from '../../functions/triggerToast';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({

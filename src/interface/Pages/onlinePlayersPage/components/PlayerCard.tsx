@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import PrimaryButton from '../../../components/generics/PrimaryButton';
 import useSocketContext from '../../../hooks/useSocketContext';
-import { triggerToast } from '../../../functions/toastFactory';
+import { triggerToast } from '../../../functions/triggerToast';
 
 const PlayerCard = ({ userName, userId }: PlayerCardProps): ReactElement => {
   const { socketService } = useSocketContext();

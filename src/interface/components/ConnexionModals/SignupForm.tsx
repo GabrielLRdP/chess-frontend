@@ -5,7 +5,7 @@ import useHeaderContext from '../../hooks/useHeaderContext';
 import useAuthContext from '../../hooks/useAuthContext';
 ``;
 import { AuthResponse } from '../../../shared/types/server_responses';
-import { triggerToast } from '../../functions/toastFactory';
+import { triggerToast } from '../../functions/triggerToast';
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({

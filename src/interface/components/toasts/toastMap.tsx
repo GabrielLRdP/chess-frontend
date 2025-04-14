@@ -1,6 +1,6 @@
 import GenericToast from './GenericToast';
 import { toast as sonnerToast } from 'sonner';
-import { ToastProps, ToastType } from '../../functions/toastFactory';
+import { ToastProps, ToastType } from '../../functions/triggerToast';
 
 export const ToastMap: Record<ToastType, ToastEntry> = {
   login: {
@@ -30,10 +30,17 @@ export const ToastMap: Record<ToastType, ToastEntry> = {
     props: {
       title: 'Invitation reçue',
       description: 'Vous avez reçu uune invitation à jouer.',
-      button: {
-        label: 'Reply',
-        onClick: () => sonnerToast.dismiss(),
-      },
+      buttons: [
+        {
+          onClick: () => sonnerToast.dismiss(),
+          type: 'accept',
+        },
+        {
+          onClick: () => sonnerToast.dismiss(),
+          type: 'refuse',
+        },
+      ],
+      duration: Infinity,
     },
   },
   generic: {
@@ -42,10 +49,13 @@ export const ToastMap: Record<ToastType, ToastEntry> = {
       title: 'This is a headless toast',
       description:
         'You have full control of styles and jsx, while still having the animations.',
-      button: {
-        label: 'Reply',
-        onClick: () => sonnerToast.dismiss(),
-      },
+      buttons: [
+        {
+          label: 'Reply',
+          onClick: () => sonnerToast.dismiss(),
+          type: 'generic',
+        },
+      ],
     },
   },
 };
