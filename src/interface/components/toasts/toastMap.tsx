@@ -17,6 +17,25 @@ export const ToastMap: Record<ToastType, ToastEntry> = {
       description: 'Vous pouvez maintenant jouer en ligne',
     },
   },
+  sentInvitation: {
+    component: GenericToast,
+    props: {
+      title: 'Invitation envoyée',
+      description: 'En attente de la réponse',
+    },
+  },
+
+  receivedInvitation: {
+    component: GenericToast,
+    props: {
+      title: 'Invitation reçue',
+      description: 'Vous avez reçu uune invitation à jouer.',
+      button: {
+        label: 'Reply',
+        onClick: () => sonnerToast.dismiss(),
+      },
+    },
+  },
   generic: {
     component: GenericToast,
     props: {

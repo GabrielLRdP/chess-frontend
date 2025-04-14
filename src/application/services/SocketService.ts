@@ -3,7 +3,7 @@ import { io, Socket } from 'socket.io-client';
 const SOCKET_URL = import.meta.env.VITE_BASE_URL as string;
 
 export class SocketService {
-  private socket: Socket;
+  public socket: Socket;
 
   constructor() {
     const token = sessionStorage.getItem('accessToken');
@@ -31,8 +31,11 @@ export class SocketService {
     this.socket.on(event, callback);
   }
 
+  public off<T>(event: string, callback: (...args: T[]) => void) {
+    this.socket.off(event, callback); // 👈 ici
+  }
+
   public emit<T>(event: string, data: T): void {
-    console.log('ici');
     this.socket.emit(event, data);
   }
 }

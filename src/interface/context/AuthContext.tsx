@@ -14,7 +14,6 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const token = sessionStorage.getItem('accessToken');
-    console.log(token);
     if (!token) {
       logout();
       return;

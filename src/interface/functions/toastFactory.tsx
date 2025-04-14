@@ -19,7 +19,12 @@ export const triggerToast = (type: ToastType) => {
   ));
 };
 
-export type ToastType = 'login' | 'generic' | 'signup';
+export type ToastType =
+  | 'login'
+  | 'generic'
+  | 'signup'
+  | 'sentInvitation'
+  | 'receivedInvitation';
 export interface ToastProps {
   id: string | number;
   title: string;

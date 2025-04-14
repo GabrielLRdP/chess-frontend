@@ -10,24 +10,20 @@ const OnlinePlayersPage = () => {
 
   useEffect(() => {
     socketService.emit('join-users-room', 'placeholder');
-    console.log('connected to users-room');
     return () => {
-      console.log('users-room leaved');
       socketService.emit('leave-users-room', 'placeHolder');
     };
   }, []);
 
   socketService.on<UserInfo[]>('update-users-list', (users) => {
-    console.log(users);
     const filteredUsers = users.filter(
       (u) => u.userName !== userData?.userName
     );
     const usersDisplay = filteredUsers.map((u) => (
-      <PlayerCard userName={u.userName} />
+      <PlayerCard userName={u.userName} userId={u.userId} />
     ));
     setUserList(usersDisplay);
   });
-  console.log(userList);
 
   return (
     <section className='w-[50%] m-auto mt-9 mb-9'>
