@@ -38,7 +38,7 @@ const SignUpForm = () => {
     if (data && status === 'success') {
       sessionStorage.setItem('accessToken', data.accessToken);
       login();
-      triggerToast('signup');
+      triggerToast('signup', { userName: data.userData.userName });
       setIsSignupModalOpen(false);
     }
   }, [status]);

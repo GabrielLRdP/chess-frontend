@@ -47,7 +47,7 @@ const LoginForm = () => {
       sessionStorage.setItem('accessToken', data.accessToken);
       login();
       setIsLoginModalOpen(false);
-      triggerToast('login');
+      triggerToast('login', { userName: data.userData.userName });
     } else if (status === 'error') {
       setError(serverError);
     }

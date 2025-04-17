@@ -1,8 +1,11 @@
 import { toast as sonnerToast } from 'sonner';
-import { ToastMap } from '../components/toasts/toastMap';
+import { toastMap } from '../components/toasts/toastMap';
 
-export const triggerToast = (type: ToastType) => {
-  const { component: Toast, props } = ToastMap[type];
+export const triggerToast = <T extends Record<string, unknown>>(
+  type: ToastType,
+  additionalData?: T
+) => {
+  const { component: Toast, props } = toastMap(type, additionalData);
   const buttons = props.buttons?.map((b) => {
     return { label: b.label, onClick: () => b.onClick, type: b.type };
   });
