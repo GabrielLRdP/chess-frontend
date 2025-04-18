@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import Case from '../pages/chessBoardPage/components/Case';
+import Case from '../../interface/components/ChessBoard/Case';
 import { Color } from '../../shared/types/global_types';
 import { toggleColor } from '../../shared/utils/toggleColor';
 import { Piece } from '../../domain/entities/piece/Piece';

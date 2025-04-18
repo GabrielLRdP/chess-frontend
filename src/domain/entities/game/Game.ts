@@ -9,9 +9,15 @@ import { getEnPassantCaseFromFen } from '../../utils/getEnpassantCaseFromFen';
 import { getKing } from '../../../shared/utils/getKing';
 
 export class Game {
+  public initialPosition: string;
+
   constructor(
     public initialFen: string = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-  ) {}
+  ) {
+    const firstSpaceInFenIndex = this.initialFen.indexOf(' ');
+    const inititalPosition = this.initialFen.slice(0, firstSpaceInFenIndex);
+    this.initialPosition = inititalPosition;
+  }
   public turn: number = Number(this.initialFen.split(' ')[5]);
   public enPassantCase: Position | null = getEnPassantCaseFromFen(
     this.initialFen
