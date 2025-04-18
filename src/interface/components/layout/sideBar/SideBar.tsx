@@ -1,5 +1,9 @@
 import { ReactElement, useState } from 'react';
-import { faPeopleGroup, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPeopleGroup,
+  faUser,
+  faChess,
+} from '@fortawesome/free-solid-svg-icons';
 import MenuItem from './MenuItem';
 
 const SideBar = (): ReactElement => {
@@ -25,6 +29,12 @@ const SideBar = (): ReactElement => {
           isExpanded={isExpanded}
           label={'Jouer en ligne'}
           path={'/players'}
+        />
+        <MenuItem
+          icon={faChess}
+          isExpanded={isExpanded}
+          label={'Partie en Ligne'}
+          path={'/game'}
         />
       </ul>
     </nav>

@@ -4,6 +4,7 @@ import OnlinePlayersPage from './pages/onlinePlayersPage/OnlinePlayersPage';
 import { AuthContextProvider } from './context/AuthContext';
 import AppLayout from './components/layout/appLayout';
 import { SocketContextProvider } from './context/SocketContext';
+import OnlineGamePage from './pages/onlineGamePage/OnlineGamePage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Routes>
               <Route path='/' element={<FreeChessboardPage />} />
               <Route path='/players' element={<OnlinePlayersPage />} />
+              <Route path='/game' element={<OnlineGamePage />} />
             </Routes>
           </AppLayout>
         </Router>
