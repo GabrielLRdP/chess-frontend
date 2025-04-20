@@ -1,9 +1,10 @@
 import { ReactElement } from 'react';
 import { toast as sonnerToast } from 'sonner';
+import { SimpleActionButton } from '../../../functions/triggerToast';
 
 const GenericToastButton = (props: {
   label: string;
-  action: () => void;
+  action: SimpleActionButton['action'];
   id: string | number | undefined;
 }): ReactElement => {
   return (

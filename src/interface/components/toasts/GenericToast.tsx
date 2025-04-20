@@ -1,12 +1,14 @@
 import { ToastProps } from '../../functions/triggerToast';
 import { toastButtons } from './buttons';
+
 const GenericToast = (props: ToastProps) => {
   const { title, description, buttons, id } = props;
   const buttonsElements = buttons?.map((b) => {
     const Button = toastButtons[b.type];
     return (
       <div className='ml-5 shrink-0 rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden'>
-        <Button label={b.label || ''} action={b.onClick} id={id} />
+        {/* @ts-expect-error b.action is either a function with a argument or not, correctly typing it would make more complexity for nothing*/}
+        <Button label={b.label || ''} action={b.action} id={id} />
       </div>
     );
   });

@@ -40,6 +40,7 @@ const ChessBoard = ({ children }: PropsWithChildren): ReactElement => {
       )
     );
   }, [currentPosition, selectedPiece, side]);
+  console.log('coucou');
 
   return (
     <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[20px]'>

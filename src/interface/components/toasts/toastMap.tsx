@@ -1,6 +1,7 @@
 import GenericToast from './GenericToast';
 import { toast as sonnerToast } from 'sonner';
 import { ToastProps, ToastType } from '../../functions/triggerToast';
+import { respondInvitation } from './actions/respondInvitation';
 
 export const toastMap = <T extends Record<string, unknown>>(
   type: ToastType,
@@ -33,18 +34,35 @@ export const toastMap = <T extends Record<string, unknown>>(
       component: GenericToast,
       props: {
         title: 'Invitation reçue',
-        description: `${additionalData?.userName} vous défie`,
+        description: `${additionalData?.fromUserName} vous défie`,
         buttons: [
           {
-            onClick: () => sonnerToast.dismiss(),
+            action: (socketService) =>
+              respondInvitation(
+                additionalData?.fromSocketId as string,
+                socketService,
+                true
+              ),
             type: 'accept',
           },
           {
-            onClick: () => sonnerToast.dismiss(),
+            action: (socketService) =>
+              respondInvitation(
+                additionalData?.fromSocketId as string,
+                socketService,
+                false
+              ),
             type: 'refuse',
           },
         ],
         duration: Infinity,
+      },
+    },
+    invitationResponse: {
+      component: GenericToast,
+      props: {
+        title: 'Réponse à votre invitation',
+        description: 'PlaceHolder',
       },
     },
     generic: {
@@ -56,7 +74,7 @@ export const toastMap = <T extends Record<string, unknown>>(
         buttons: [
           {
             label: 'Reply',
-            onClick: () => sonnerToast.dismiss(),
+            action: () => sonnerToast.dismiss(),
             type: 'generic',
           },
         ],
