@@ -4,13 +4,22 @@ const SOCKET_URL = import.meta.env.VITE_BASE_URL as string;
 
 export class SocketService {
   public socket: Socket;
+  public onGameStartedCallback: (<T>(payload: T) => void) | null = null;
 
-  constructor() {
+  private constructor() {
     const token = sessionStorage.getItem('accessToken');
     this.socket = io(SOCKET_URL, {
       autoConnect: false,
       auth: { token },
     });
+  }
+  private static instance: SocketService;
+
+  static getInstance(): SocketService {
+    if (!SocketService.instance) {
+      SocketService.instance = new SocketService();
+    }
+    return SocketService.instance;
   }
 
   public connect(): void {
@@ -37,5 +46,9 @@ export class SocketService {
 
   public emit<T>(event: string, data: T): void {
     this.socket.emit(event, data);
+  }
+
+  public setOnGameStartedCallback(callback: <T>(payload: T) => void) {
+    this.onGameStartedCallback = callback;
   }
 }
