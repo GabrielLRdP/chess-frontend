@@ -8,9 +8,9 @@ import OnlineGamePage from './pages/onlineGamePage/OnlineGamePage';
 
 function App() {
   return (
-    <AuthContextProvider>
-      <SocketContextProvider>
-        <Router>
+    <Router>
+      <AuthContextProvider>
+        <SocketContextProvider>
           <AppLayout>
             <Routes>
               <Route path='/' element={<FreeChessboardPage />} />
@@ -18,9 +18,9 @@ function App() {
               <Route path='/game' element={<OnlineGamePage />} />
             </Routes>
           </AppLayout>
-        </Router>
-      </SocketContextProvider>
-    </AuthContextProvider>
+        </SocketContextProvider>
+      </AuthContextProvider>
+    </Router>
   );
 }
 

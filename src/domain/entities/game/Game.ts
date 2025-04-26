@@ -7,16 +7,21 @@ import {
 import { Piece } from '../piece/Piece';
 import { getEnPassantCaseFromFen } from '../../utils/getEnpassantCaseFromFen';
 import { getKing } from '../../../shared/utils/getKing';
+import { Player } from '../player/Player';
 
 export class Game {
   public initialPosition: string;
+  public isOnlineGame: boolean;
 
   constructor(
-    public initialFen: string = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+    public initialFen: string = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+    public player?: Player,
+    public opponent?: Player
   ) {
     const firstSpaceInFenIndex = this.initialFen.indexOf(' ');
     const inititalPosition = this.initialFen.slice(0, firstSpaceInFenIndex);
     this.initialPosition = inititalPosition;
+    this.isOnlineGame = !!this.player;
   }
   public turn: number = Number(this.initialFen.split(' ')[5]);
   public enPassantCase: Position | null = getEnPassantCaseFromFen(
