@@ -9,7 +9,9 @@ const PromotionModal = () => {
   const pieceNotations = ['Q', 'R', 'B', 'N'];
   const inconsToDisplay = pieceNotations.map((element) => {
     const coloredNotation = color === 'white' ? element : element.toLowerCase();
-    return <PiecePromotionDisplay notation={coloredNotation} />;
+    return (
+      <PiecePromotionDisplay notation={coloredNotation} key={Math.random()} />
+    );
   });
 
   return (

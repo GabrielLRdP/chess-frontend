@@ -9,6 +9,7 @@ import { useTakenPiecesStore } from '../stores/useTakenPiecesStore';
 import { Position } from '../../shared/types/global_types';
 import usePawnPromotion from './usePawnPromotion';
 import { useEndTurn } from './useEndTurn';
+import { SocketService } from '../../application/services/SocketService';
 
 const useHandleCaseClick = (): ((
   targetPiece: Piece | null,
@@ -17,7 +18,7 @@ const useHandleCaseClick = (): ((
   const { currentPosition, setPosition } = usePositionStore();
   const { selectedPiece, setSelectedPiece } = useSelectedPieceStore();
   const { takenPieces, setTakenPieces } = useTakenPiecesStore();
-  const { game, setGame } = useGameStore();
+  const { game, roomId, setGame } = useGameStore();
   const promotePawn = usePawnPromotion();
   const endTurn = useEndTurn();
   const [enPassantCase, setEnPassantCase] = useState<Position | null>(
@@ -55,8 +56,7 @@ const useHandleCaseClick = (): ((
 
       if (
         selectedPiece?.position[0] === targetPiece?.position[0] &&
-        selectedPiece?.position[1] === targetPiece?.position[1] &&
-        game?.player?.color === targetPiece?.color
+        selectedPiece?.position[1] === targetPiece?.position[1]
       ) {
         setSelectedPiece(null);
       } else {
@@ -76,28 +76,38 @@ const useHandleCaseClick = (): ((
           );
         });
 
-    if (isMovePossible) {
-      handleEnPassantCase();
-      const { pawnPromotion, takenPiece, newPosition } =
-        ChessBoardService.makeMove(
-          currentPosition,
-          selectedPiece,
-          targetPosition
-        );
-      setPosition(newPosition);
-      if (takenPiece) {
-        const newTakenPiece = [...takenPieces];
-        newTakenPiece.push(takenPiece as Piece);
-        setTakenPieces(newTakenPiece);
-      }
-      if (pawnPromotion) {
-        promotePawn();
-        return;
-      }
-      const resetMoveCount =
-        takenPiece !== null || selectedPiece.notation.toLowerCase() === 'p';
-      endTurn(game, resetMoveCount);
+    if (!isMovePossible) {
+      handleNewSelectedCase();
+      return;
     }
+    handleEnPassantCase();
+    if (game.isOnlineGame) {
+      const socketService = SocketService.getInstance();
+      socketService.emit('make-move', {
+        roomId,
+        previousPiecePosition: selectedPiece.position,
+        newPiecePosition: targetPosition,
+      });
+    }
+    const { pawnPromotion, takenPiece, newPosition } =
+      ChessBoardService.makeMove(
+        currentPosition,
+        selectedPiece,
+        targetPosition
+      );
+    setPosition(newPosition);
+    if (takenPiece) {
+      const newTakenPiece = [...takenPieces];
+      newTakenPiece.push(takenPiece as Piece);
+      setTakenPieces(newTakenPiece);
+    }
+    if (pawnPromotion) {
+      promotePawn();
+      return;
+    }
+    const resetMoveCount =
+      takenPiece !== null || selectedPiece.notation.toLowerCase() === 'p';
+    endTurn(game, resetMoveCount);
     handleNewSelectedCase();
   };
 };

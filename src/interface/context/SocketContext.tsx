@@ -5,7 +5,8 @@ import {
   registerSocketListeners,
   unregisterSocketListeners,
 } from '../../application/listeners/socketListeners/index';
-import { useOnGameStartedCallBack } from '../hooks/socket/useOneGameStartedCallBack';
+import { useOnGameStartedCallback } from '../hooks/socket/useOneGameStartedCallback';
+import { useOnOpponentMoveCallback } from '../hooks/socket/useOnOpponentMoveCallback';
 
 export interface SocketContextType {
   socketService: SocketService;
@@ -16,7 +17,8 @@ const SocketContext = createContext<SocketContextType | undefined>(undefined);
 const SocketContextProvider = ({ children }: { children: ReactNode }) => {
   const { isAuthenticated } = useAuthContext();
   const socketService = SocketService.getInstance();
-  const onGameStartedCallback = useOnGameStartedCallBack();
+  const onGameStartedCallback = useOnGameStartedCallback();
+  const onOpponentMoveCallback = useOnOpponentMoveCallback();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -32,6 +34,7 @@ const SocketContextProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     socketService.setOnGameStartedCallback(onGameStartedCallback);
+    socketService.setOnOpponentMoveCallback(onOpponentMoveCallback);
     registerSocketListeners(socketService);
 
     return () => {

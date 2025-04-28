@@ -1,11 +1,14 @@
 import { io, Socket } from 'socket.io-client';
 import { StartGameData } from '../handlers/socketHandlers/handleStartGame';
+import { OpponentMoveData } from '../handlers/socketHandlers/handleOpponentMove';
 
 const SOCKET_URL = import.meta.env.VITE_BASE_URL as string;
 
 export class SocketService {
   public socket: Socket;
   public onGameStartedCallback: ((data: StartGameData) => void) | null = null;
+  public onOpponentMoveCallback: ((data: OpponentMoveData) => void) | null =
+    null;
 
   private constructor() {
     const token = sessionStorage.getItem('accessToken');
@@ -51,5 +54,8 @@ export class SocketService {
 
   public setOnGameStartedCallback(callback: (data: StartGameData) => void) {
     this.onGameStartedCallback = callback;
+  }
+  public setOnOpponentMoveCallback(callback: (data: OpponentMoveData) => void) {
+    this.onOpponentMoveCallback = callback;
   }
 }
