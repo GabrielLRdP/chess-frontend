@@ -1,10 +1,11 @@
 import { io, Socket } from 'socket.io-client';
+import { StartGameData } from '../handlers/socketHandlers/handleStartGame';
 
 const SOCKET_URL = import.meta.env.VITE_BASE_URL as string;
 
 export class SocketService {
   public socket: Socket;
-  public onGameStartedCallback: (<T>(payload: T) => void) | null = null;
+  public onGameStartedCallback: ((data: StartGameData) => void) | null = null;
 
   private constructor() {
     const token = sessionStorage.getItem('accessToken');
@@ -48,7 +49,7 @@ export class SocketService {
     this.socket.emit(event, data);
   }
 
-  public setOnGameStartedCallback(callback: <T>(payload: T) => void) {
+  public setOnGameStartedCallback(callback: (data: StartGameData) => void) {
     this.onGameStartedCallback = callback;
   }
 }

@@ -48,9 +48,15 @@ const useHandleCaseClick = (): ((
     };
 
     const handleNewSelectedCase = () => {
+      if (game?.isOnlineGame && game?.player?.color !== targetPiece?.color) {
+        setSelectedPiece(null);
+        return;
+      }
+
       if (
         selectedPiece?.position[0] === targetPiece?.position[0] &&
-        selectedPiece?.position[1] === targetPiece?.position[1]
+        selectedPiece?.position[1] === targetPiece?.position[1] &&
+        game?.player?.color === targetPiece?.color
       ) {
         setSelectedPiece(null);
       } else {
