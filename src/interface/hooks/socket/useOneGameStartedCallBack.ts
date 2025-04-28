@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import useAuthContext from '../useAuthContext';
+import useAuthContext from '../context/useAuthContext';
 import { StartGameData } from '../../../application/handlers/socketHandlers/handleStartGame';
 import { Player } from '../../../domain/entities/player/Player';
 import { useInitializeGame } from '../useInitializeGame';

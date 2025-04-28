@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { HeaderContext, HeaderContextType } from '../context/HeaderContext';
+import { HeaderContext, HeaderContextType } from '../../context/HeaderContext';
 
 const useHeaderContext = (): HeaderContextType => {
   const context = useContext(HeaderContext);
   if (!context) {
     throw new Error(
-      'useChessBoardContext must be used within a ChessBoardProvider'
+      'useHeaderContext must be used within a ChessBoardProvider'
     );
   }
   return context;

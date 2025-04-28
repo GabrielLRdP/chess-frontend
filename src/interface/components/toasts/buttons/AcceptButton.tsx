@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { SocketActionButton } from '../../../functions/triggerToast';
-import useSocketContext from '../../../hooks/useSocketContext';
+import useSocketContext from '../../../hooks/context/useSocketContext';
 
 const AcceptButton = (props: {
   label: string;

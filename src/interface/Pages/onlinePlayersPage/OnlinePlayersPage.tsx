@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react';
-import useAuthContext from '../../hooks/useAuthContext';
+import useAuthContext from '../../hooks/context/useAuthContext';
 import PlayerCard from './components/PlayerCard';
-import useSocketContext from '../../hooks/useSocketContext';
+import useSocketContext from '../../hooks/context/useSocketContext';
 
 const OnlinePlayersPage = () => {
   const { userData } = useAuthContext();

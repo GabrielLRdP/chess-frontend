@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import PrimaryButton from '../../../components/generics/PrimaryButton';
-import useChessBoardContext from '../../../hooks/useChessBoardContext';
+import useChessBoardContext from '../../../hooks/context/useChessBoardContext';
 import { toggleColor } from '../../../../shared/utils/toggleColor';
 
 const SwitchSideButton = (): ReactElement => {

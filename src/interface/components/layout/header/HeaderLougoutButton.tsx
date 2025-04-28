@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import useAuthContext from '../../../hooks/useAuthContext';
+import useAuthContext from '../../../hooks/context/useAuthContext';
 import SecondaryButton from '../../generics/SecondaryButton';
 
 const HeaderLogOutButton = (): ReactElement => {

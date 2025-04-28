@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import Modal from '../generics/Modal';
-import useHeaderContext from '../../hooks/useHeaderContext';
+import useHeaderContext from '../../hooks/context/useHeaderContext';
 import LoginForm from './LoginForm';
 
 const LoginModal = (): ReactElement => {

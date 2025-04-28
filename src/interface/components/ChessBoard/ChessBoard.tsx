@@ -8,7 +8,7 @@ import InfoSection from './InfoSection';
 import { useGameStore } from '../../stores/useGameStore';
 import PromotionModal from './PromotionModal';
 import { usePromotionStore } from '../../stores/usePromotionStore';
-import useChessBoardContext from '../../hooks/useChessBoardContext';
+import useChessBoardContext from '../../hooks/context/useChessBoardContext';
 import { toggleColor } from '../../../shared/utils/toggleColor';
 import useHandleCaseClick from '../../hooks/useHandleCaseClick';
 

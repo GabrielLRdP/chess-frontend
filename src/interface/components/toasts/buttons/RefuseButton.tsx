@@ -3,7 +3,7 @@ import { toast as sonnerToast } from 'sonner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { SocketActionButton } from '../../../functions/triggerToast';
-import useSocketContext from '../../../hooks/useSocketContext';
+import useSocketContext from '../../../hooks/context/useSocketContext';
 
 const RefuseButton = (props: {
   action: SocketActionButton['action'];

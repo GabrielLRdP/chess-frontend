@@ -1,6 +1,6 @@
 import { SocketService } from '../../application/services/SocketService';
 import { createContext, ReactNode, useEffect } from 'react';
-import useAuthContext from '../hooks/useAuthContext';
+import useAuthContext from '../hooks/context/useAuthContext';
 import {
   registerSocketListeners,
   unregisterSocketListeners,

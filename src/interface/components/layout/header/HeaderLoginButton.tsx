@@ -1,5 +1,5 @@
 import SecondaryButton from '../../generics/SecondaryButton';
-import useHeaderContext from '../../../hooks/useHeaderContext';
+import useHeaderContext from '../../../hooks/context/useHeaderContext';
 import { ReactElement } from 'react';
 
 const HeaderLoginButton = (): ReactElement => {

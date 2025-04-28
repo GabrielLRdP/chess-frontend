@@ -1,4 +1,4 @@
-import useHeaderContext from '../../../hooks/useHeaderContext';
+import useHeaderContext from '../../../hooks/context/useHeaderContext';
 import PrimaryButton from '../../generics/PrimaryButton';
 import { ReactElement } from 'react';
 

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import Spinner from '../generics/Spinner';
 import { AuthResponse } from '../../../shared/types/server_responses';
-import useHeaderContext from '../../hooks/useHeaderContext';
-import useAuthContext from '../../hooks/useAuthContext';
+import useHeaderContext from '../../hooks/context/useHeaderContext';
+import useAuthContext from '../../hooks/context/useAuthContext';
 import { triggerToast } from '../../functions/triggerToast';
 
 const LoginForm = () => {
