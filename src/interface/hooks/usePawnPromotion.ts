@@ -6,12 +6,13 @@ import { usePositionStore } from '../stores/usePositionStore';
 import { ChessBoardService } from '../../application/services/ChesBoardService/ChessBoardService';
 import { useEndTurn } from './useEndTurn';
 import { useGameStore } from '../stores/useGameStore';
+import { emitMove } from '../functions/emitMove';
 
 const usePawnPromotion = () => {
   const { promotionChoice, setIsModalOpen } = usePromotionStore();
   const { selectedPiece } = useSelectedPieceStore();
   const { currentPosition, setPosition } = usePositionStore();
-  const { game } = useGameStore();
+  const { game, roomId } = useGameStore();
   const endTurn = useEndTurn();
 
   useEffect(() => {
@@ -32,6 +33,14 @@ const usePawnPromotion = () => {
             pieceObject
           );
           setPosition(updatedPosition);
+          emitMove(
+            game.isOnlineGame,
+            roomId,
+            selectedPiece.previousPostion,
+            selectedPiece.position,
+            promotionChoice
+          );
+
           endTurn(game, true);
         }
       }

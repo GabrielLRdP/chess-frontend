@@ -11,4 +11,5 @@ export const handleOpponentMove = (data: OpponentMoveData) => {
 export type OpponentMoveData = {
   previousPiecePosition: Position;
   newPiecePosition: Position;
+  promotion: string;
 };

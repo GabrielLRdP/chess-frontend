@@ -9,7 +9,7 @@ import { useTakenPiecesStore } from '../stores/useTakenPiecesStore';
 import { Position } from '../../shared/types/global_types';
 import usePawnPromotion from './usePawnPromotion';
 import { useEndTurn } from './useEndTurn';
-import { SocketService } from '../../application/services/SocketService';
+import { emitMove } from '../functions/emitMove';
 
 const useHandleCaseClick = (): ((
   targetPiece: Piece | null,
@@ -81,14 +81,6 @@ const useHandleCaseClick = (): ((
       return;
     }
     handleEnPassantCase();
-    if (game.isOnlineGame) {
-      const socketService = SocketService.getInstance();
-      socketService.emit('make-move', {
-        roomId,
-        previousPiecePosition: selectedPiece.position,
-        newPiecePosition: targetPosition,
-      });
-    }
     const { pawnPromotion, takenPiece, newPosition } =
       ChessBoardService.makeMove(
         currentPosition,
@@ -105,6 +97,13 @@ const useHandleCaseClick = (): ((
       promotePawn();
       return;
     }
+    emitMove(
+      game.isOnlineGame,
+      roomId,
+      selectedPiece.previousPostion,
+      targetPosition
+    );
+
     const resetMoveCount =
       takenPiece !== null || selectedPiece.notation.toLowerCase() === 'p';
     endTurn(game, resetMoveCount);

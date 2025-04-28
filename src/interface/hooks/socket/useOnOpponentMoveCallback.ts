@@ -5,6 +5,7 @@ import { useEndTurn } from '../useEndTurn';
 import { useGameStore } from '../../stores/useGameStore';
 import { Piece } from '../../../domain/entities/piece/Piece';
 import { OpponentMoveData } from '../../../application/handlers/socketHandlers/handleOpponentMove';
+import { fenToObjectTrad } from '../../../application/services/ChesBoardService/fentoObjectTraductor';
 
 export const useOnOpponentMoveCallback = () => {
   const { game } = useGameStore();
@@ -15,7 +16,7 @@ export const useOnOpponentMoveCallback = () => {
     return () => {};
   }
   return (data: OpponentMoveData) => {
-    const { previousPiecePosition, newPiecePosition } = data;
+    const { previousPiecePosition, newPiecePosition, promotion } = data;
     const piece: Piece = currentPosition.find((p) => {
       return (
         !!p &&
@@ -28,7 +29,25 @@ export const useOnOpponentMoveCallback = () => {
       piece,
       newPiecePosition
     );
-    setPosition(newPosition);
+    console.log(promotion);
+    if (promotion) {
+      const newPiece = fenToObjectTrad[promotion];
+      console.log(newPiece);
+      if (newPiece && promotion !== '0' && newPiece !== '0') {
+        const newPieceObject = new newPiece.object(
+          newPiece.color,
+          newPiecePosition
+        );
+        const positionWithPromotion = ChessBoardService.replacePiece(
+          newPosition,
+          piece,
+          newPieceObject
+        );
+        setPosition(positionWithPromotion);
+      }
+    } else {
+      setPosition(newPosition);
+    }
     if (takenPiece) {
       const newTakenPiece = [...takenPieces];
       newTakenPiece.push(takenPiece as Piece);
