@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import FreeChessBoardPage from './pages/freeChessBoardPage/FreeChessBoardPage.tsx';
+import FreeChessBoardPage from './pages/freeChessBoardPage/FreeChessBoardPage';
 import OnlinePlayersPage from './pages/onlinePlayersPage/OnlinePlayersPage';
 import { AuthContextProvider } from './context/AuthContext';
 import AppLayout from './components/layout/appLayout';
