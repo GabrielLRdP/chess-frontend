@@ -4,7 +4,7 @@ import ChessBoard from '../../components/ChessBoard/ChessBoard';
 import NewGameButton from './components/NewGameButton';
 import SwitchSideButton from './components/SwitchSideButton';
 
-const FreeChessboardPage = (): ReactElement => {
+const FreeChessBoardPage = (): ReactElement => {
   return (
     <ChessBoardProvider>
       <ChessBoard>
@@ -17,4 +17,4 @@ const FreeChessboardPage = (): ReactElement => {
   );
 };
 
-export default FreeChessboardPage;
+export default FreeChessBoardPage;

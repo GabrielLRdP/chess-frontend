@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import FreeChessboardPage from './pages/freeChessBoardPage/FreeChessBoardPage.tsx';
+import FreeChessBoardPage from './pages/freeChessBoardPage/FreeChessBoardPage.tsx';
 import OnlinePlayersPage from './pages/onlinePlayersPage/OnlinePlayersPage';
 import { AuthContextProvider } from './context/AuthContext';
 import AppLayout from './components/layout/appLayout';
@@ -13,7 +13,7 @@ function App() {
         <SocketContextProvider>
           <AppLayout>
             <Routes>
-              <Route path='/' element={<FreeChessboardPage />} />
+              <Route path='/' element={<FreeChessBoardPage />} />
               <Route path='/players' element={<OnlinePlayersPage />} />
               <Route path='/game' element={<OnlineGamePage />} />
             </Routes>
