@@ -61,7 +61,7 @@ export class Game {
     const oppositeKing = getKing(position, this.playerTurn);
     if (oppositeKing.isCheckMate(position, this.enPassantCase)) {
       this.status = 'over';
-      this.result = this.playerTurn === 'white' ? 'whiteWins' : 'blackWins';
+      this.result = this.playerTurn === 'white' ? 'blackWins' : 'whiteWins';
       return;
     }
     if (!oppositeKing.canAnyTeamMateMove(position, this.enPassantCase)) {
