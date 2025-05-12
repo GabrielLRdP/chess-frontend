@@ -5,7 +5,7 @@ import {
   registerSocketListeners,
   unregisterSocketListeners,
 } from '../../application/listeners/socketListeners/index';
-import { useOnGameStartedCallback } from '../hooks/socket/useOneGameStartedCallback';
+import { useOnGameStartedCallback } from '../hooks/socket/useOnGameStartedCallBack';
 import { useOnOpponentMoveCallback } from '../hooks/socket/useOnOpponentMoveCallback';
 
 export interface SocketContextType {
