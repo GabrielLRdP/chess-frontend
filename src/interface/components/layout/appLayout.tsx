@@ -1,19 +1,16 @@
 import { PropsWithChildren, ReactElement } from 'react';
 import Header from './header/Header';
-import SideBar from './sideBar/SideBar';
 import { Toaster } from 'sonner';
+import Footer from './footer/Footer';
 
 const AppLayout = ({ children }: PropsWithChildren): ReactElement => {
   return (
-    <>
+    <div className='min-h-screen flex flex-col'>
       <Header />
       <Toaster />
-      {/* added border border-primary because if not, a margin appear on top...*/}
-      <main className='relative border border-primary'>
-        <SideBar />
-        {children}
-      </main>
-    </>
+      <main className='relative min-h-[80vh]'>{children}</main>
+      <Footer />
+    </div>
   );
 };
 

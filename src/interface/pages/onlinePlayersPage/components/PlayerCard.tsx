@@ -6,7 +6,7 @@ import { triggerToast } from '../../../functions/triggerToast';
 const PlayerCard = ({ userName, userId }: PlayerCardProps): ReactElement => {
   const { socketService } = useSocketContext();
   return (
-    <div className='w-[100%] border-2 border-gray-700 bg-primary-lighter rounded p-5 flex justify-between items-center text-secondary transition-transform hover:-translate-y-2 hover:-translate-x-[3px]'>
+    <div className='w-[100%] border-2 border-gray-700 bg-neutral-700 text-white bg-opacity-70 rounded p-5 font-bold flex justify-between items-center transition-transform hover:-translate-y-2 hover:-translate-x-[3px]'>
       {userName}
       <PrimaryButton
         label='inviter'

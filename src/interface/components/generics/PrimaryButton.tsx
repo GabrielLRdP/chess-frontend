@@ -29,8 +29,7 @@ const PrimaryButton = ({
           onTouchEnd={onTouchEnd}
           className={`${classes} ${
             haveShadow ? `shadow-gray-600 hover:shadow-gray-900-hover` : ''
-          } bg-secondary hover:bg-secondary-darker
-          } text-primary focus:outline-none`}
+          } bg-secondary-lighter hover:bg-secondary-darker text-primary focus:outline-none`}
         >
           {label}
         </button>
