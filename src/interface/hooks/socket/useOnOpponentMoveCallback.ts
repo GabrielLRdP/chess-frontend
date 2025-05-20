@@ -29,10 +29,8 @@ export const useOnOpponentMoveCallback = () => {
       piece,
       newPiecePosition
     );
-    console.log(promotion);
     if (promotion) {
       const newPiece = fenToObjectTrad[promotion];
-      console.log(newPiece);
       if (newPiece && promotion !== '0' && newPiece !== '0') {
         const newPieceObject = new newPiece.object(
           newPiece.color,
