@@ -42,10 +42,10 @@ const ChessBoard = ({ children }: PropsWithChildren): ReactElement => {
   }, [currentPosition, selectedPiece, side]);
 
   return (
-    <div className='flex flex-col relative items-center justify-center w-[480px] m-auto mt-[20px]'>
+    <div className='flex flex-col relative items-center justify-center w-[640px] m-auto mt-[20px]'>
       {isModalOpen && <PromotionModal />}
       <InfoSection color={side} key={Math.random()} />
-      <section className='flex w-[480px] flex-wrap m-auto rounded-lg overflow-hidden shadow-lg'>
+      <section className='flex w-[640px] flex-wrap m-auto border-[6px] border-[#4b3621]  shadow-lg box-content overflow-hidden'>
         {caseList}
       </section>
       <InfoSection color={toggleColor(side)} key={Math.random()} />
