@@ -14,10 +14,10 @@ const Header = (): ReactElement => {
         <LoginModal />
         <header
           className='p-5 flex justify-between items-center shadow-black shadow-[0_10px_20px_rgba(0,0,0,0.5)]
-          px-[75px] relative bg-[rgb(27, 27, 27)] z-30'
+          lg:px-[75px] md:px[50px] sm:px[25px] relative bg-[rgb(27, 27, 27)] z-30'
         >
           <h1
-            className='text-white font-bold text-4xl flex-5'
+            className='text-white font-bold lg:text-4xl md:text-2xl sm:text-2xl flex-5'
             onClick={() => {
               navigate('/');
             }}

@@ -8,10 +8,10 @@ const HeaderButtonsSection = (): ReactElement => {
   const { isAuthenticated, userData } = useAuthContext();
 
   return (
-    <div className=' w-[25%] flex space-x-2 items-center'>
+    <div className='flex  space-x-2 items-center'>
       {isAuthenticated ? (
         <>
-          <p className='text-white font-bold text-l flex-5'>
+          <p className='text-white font-bold text-xs sm:text-sm md:text-md lg:text-lg'>
             Bonjour {userData?.userName}
           </p>
           <HeaderLogOutButton />
