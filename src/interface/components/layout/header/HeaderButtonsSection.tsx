@@ -11,7 +11,7 @@ const HeaderButtonsSection = (): ReactElement => {
     <div className=' w-[25%] flex space-x-2 items-center'>
       {isAuthenticated ? (
         <>
-          <p className='text-secondary font-bold text-l flex-5'>
+          <p className='text-white font-bold text-l flex-5'>
             Bonjour {userData?.userName}
           </p>
           <HeaderLogOutButton />

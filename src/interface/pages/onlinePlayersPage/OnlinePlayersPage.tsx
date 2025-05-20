@@ -3,34 +3,55 @@ import useAuthContext from '../../hooks/context/useAuthContext';
 import PlayerCard from './components/PlayerCard';
 import useSocketContext from '../../hooks/context/useSocketContext';
 
-const OnlinePlayersPage = () => {
+const OnlinePlayersPage = (): ReactElement => {
   const { userData } = useAuthContext();
   const { socketService } = useSocketContext();
-  const [userList, setUserList] = useState<ReactElement[] | null>();
+  const [connectedUsers, setConnectedUsers] = useState<UserInfo[]>([]);
 
   useEffect(() => {
+    if (!userData) return;
+
     socketService.emit('join-users-room', 'placeholder');
     return () => {
-      socketService.emit('leave-users-room', 'placeHolder');
+      socketService.emit('leave-users-room', 'placeholder');
     };
-  }, []);
+  }, [userData]);
 
-  socketService.on<UserInfo[]>('update-users-list', (users) => {
-    const filteredUsers = users.filter(
-      (u) => u.userName !== userData?.userName
-    );
-    const usersDisplay = filteredUsers.map((u) => (
-      <PlayerCard userName={u.userName} userId={u.userId} />
-    ));
-    setUserList(usersDisplay);
-  });
+  useEffect(() => {
+    if (!userData) return;
+
+    const handler = (users: UserInfo[]) => {
+      const filtered = users.filter((u) => u.userName !== userData.userName);
+      setConnectedUsers(filtered);
+    };
+
+    socketService.on<UserInfo[]>('update-users-list', handler);
+    return () => socketService.off('update-users-list', handler);
+  }, [socketService, userData]);
 
   return (
-    <section className='w-[50%] m-auto mt-9 mb-9'>
-      <h2 className='text-secondary font-bold text-2xl flex-5'>
-        Joueurs connectés
-      </h2>
-      <div className='flex flex-col mt-5 gap-3'>{userList}</div>
+    <section className='w-[50%] m-auto mt-9 mb-9 text-secondary'>
+      <h2 className='text-white font-bold text-2xl mb-12'>Joueurs connectés</h2>
+
+      {!userData ? (
+        <div className='text-center text-secondary-lighter italic mt-36'>
+          Veuillez vous connecter pour voir les joueurs en ligne.
+        </div>
+      ) : connectedUsers.length > 0 ? (
+        <div className='flex flex-col gap-3'>
+          {connectedUsers.map((u) => (
+            <PlayerCard
+              key={u.userId}
+              userName={u.userName}
+              userId={u.userId}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className='text-center text-white italic mt-36'>
+          Aucun joueur en ligne pour le moment…
+        </div>
+      )}
     </section>
   );
 };
