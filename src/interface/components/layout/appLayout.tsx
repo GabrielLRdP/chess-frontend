@@ -8,7 +8,7 @@ const AppLayout = ({ children }: PropsWithChildren): ReactElement => {
     <div className='min-h-screen flex flex-col'>
       <Header />
       <Toaster />
-      <main className='relative min-h-[80vh]'>{children}</main>
+      <main className='relative min-h-[80vh] bg-neutral-700'>{children}</main>
       <Footer />
     </div>
   );

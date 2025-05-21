@@ -1,7 +1,6 @@
 import { triggerToast } from '../../../interface/functions/triggerToast';
 
 export const handleReceiveInvitation = (data: InvitationData) => {
-  console.log('📨 Invitation reçue :', data);
   triggerToast('receivedInvitation', {
     fromUserName: data.fromUserName,
     fromSocketId: data.fromSocketId,

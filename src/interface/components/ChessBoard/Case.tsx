@@ -24,7 +24,7 @@ const Case = ({
   return (
     <div
       className={`${
-        color === 'black' ? 'bg-orange-900' : 'bg-orange-400'
+        color === 'black' ? 'bg-[#e4c696]' : 'bg-[#9c5729]'
       } relative w-[12.5%] aspect-square text-[30px] flex items-center justify-center border border-transparent hover:border-amber-400 overflow-hidden`}
       onClick={() => handleClick(pieceObject, index)}
     >
