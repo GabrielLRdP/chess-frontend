@@ -58,6 +58,15 @@ The app will be available at http://localhost:5173.
 
 ![Capture d’écran 2025-05-21 à 18 02 25](https://github.com/user-attachments/assets/434a8626-c367-4c3f-9d28-615266e191c1)
 
+## 🤔 Why This Project?
 
+This chess game was an opportunity to:
 
+ - Implement real-time multiplayer logic with WebSockets
+
+ - Handle complex domain logic (rules, game states) in a maintainable and modular way
+
+ - Practice clean architecture, decoupling UI from game logic
+
+ - Explore Zustand as a lightweight and intuitive state manager
 
