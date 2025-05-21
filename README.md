@@ -51,3 +51,13 @@ npm run dev
 
 
 The app will be available at http://localhost:5173.
+
+## 🖼️ Screenshots
+
+![Capture d’écran 2025-05-21 à 18 00 19](https://github.com/user-attachments/assets/d4fdaf66-1a15-4ce9-9b94-dd90ce5287bf)
+
+![Capture d’écran 2025-05-21 à 18 02 25](https://github.com/user-attachments/assets/434a8626-c367-4c3f-9d28-615266e191c1)
+
+
+
+
