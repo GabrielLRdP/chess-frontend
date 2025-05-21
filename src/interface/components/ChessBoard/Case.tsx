@@ -16,8 +16,6 @@ const Case = ({
   const isThereAPiece = piece !== null;
   const { game } = useGameStore();
   let badge = null;
-  console.log('4', piece, pieceObject, '4');
-  console.log(game);
   if (pieceObject?.notation.toLowerCase() === 'k' && game?.status === 'over') {
     const badgeFactory = new EndGameBagdeFactory();
     badge = badgeFactory.createBadge(game?.result, pieceObject?.notation);
@@ -27,7 +25,7 @@ const Case = ({
     <div
       className={`${
         color === 'black' ? 'bg-orange-900' : 'bg-orange-400'
-      } relative w-[80px] h-[80px] text-[30px] flex items-center justify-center border border-transparent hover:border-amber-400 overflow-hidden`}
+      } relative w-[12.5%] aspect-square text-[30px] flex items-center justify-center border border-transparent hover:border-amber-400 overflow-hidden`}
       onClick={() => handleClick(pieceObject, index)}
     >
       {piece}
