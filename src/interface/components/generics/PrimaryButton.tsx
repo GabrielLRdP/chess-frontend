@@ -23,7 +23,7 @@ const PrimaryButton = ({
 }: PrimaryButtonProps): ReactElement => {
   const defaultOptions = {
     default: `font-sans rounded-md px-[20px] whitespace-nowrap`,
-    textSize: 'text-14-14',
+    textSize: 'text-xs md:text-lg',
     height: 'h-[40px]',
     fontWeight: 'font-bold',
     width: 'w-full',

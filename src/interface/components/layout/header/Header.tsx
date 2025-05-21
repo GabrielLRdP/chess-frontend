@@ -18,7 +18,7 @@ const Header = (): ReactElement => {
           lg:px-8 md:px[50px] sm:px[25px] relative bg-[rgb(27, 27, 27)] z-30'
         >
           <h1
-            className='text-white font-bold text-3xl lg:text-4xl   flex-5'
+            className='text-white font-bold text-2xl lg:text-4xl   flex-5'
             onClick={() => {
               navigate('/');
             }}
