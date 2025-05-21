@@ -1,30 +1,53 @@
-# React + TypeScript + Vite
+# ♟️ Online Chess Game – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the frontend of a real-time online chess game, built with **React**, **TypeScript**, and **Zustand** for state management.  
+It features a fully playable multiplayer experience, communicating with a WebSocket server using **Socket.IO**.
 
-Currently, two official plugins are available:
+👉 **[Live demo](https://chess-square.app)**  
+🔗 Part of a full-stack project – see [Backend Repository](https://github.com/GabrielLRdP/chess-backend)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🎮 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- ♟️ **Real-time online gameplay** using Socket.IO
+- ♻️ Full implementation of chess rules (legal moves, check, checkmate, stalemate, etc.)
+- 🎯 Game state management with **Zustand** (lightweight and scalable)
+- 🧩 **Separation of concerns** via the **Observer pattern** to decouple service and UI layers
+- 🎨 UI feedback with move highlights, and selected square
+- 📱 Responsive design for desktop and mobile
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## 🧰 Tech Stack
+
+- **React** with **TypeScript**
+- **Zustand** for state management
+- **Socket.IO** for WebSocket communication
+- **Vite** for development tooling
+- **TailwindCSS** for styling
+
+---
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/yourusername/chess-frontend.git
+cd chess-frontend
+npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Create a .env file at the root of the project with the following content:
+
+```bash
+VITE_BASE_URL=http://localhost:3000
+```
+Replace http://localhost:3000 with the actual URL of your backend server if needed.
+
+```bash
+npm run dev
+```
+
+
+The app will be available at http://localhost:5173.
