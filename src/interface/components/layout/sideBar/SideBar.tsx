@@ -10,14 +10,13 @@ const SideBar = (): ReactElement => {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <nav
-      className={`absolute -left-1 top-0 h-[100vh] bg-primary-darker 
-      transition-all duration-200 origin-left ${
-        isExpanded ? 'w-[400px]' : 'w-20'
-      } `}
+      className={`absolute -left-1 top-0 h-[100vh] bg-gradient-to-b from-primary-darker via-primary to-primary-lighter shadow-2xl rounded-r-3xl transition-all duration-200 origin-left border-r-4 border-primary-darker ${
+        isExpanded ? 'w-[340px] scale-105' : 'w-20'
+      }`}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
-      <ul className='flex flex-col gap-y-10 items-center py-24  '>
+      <ul className='flex flex-col gap-y-10 items-center py-24'>
         <MenuItem
           icon={faUser}
           isExpanded={isExpanded}

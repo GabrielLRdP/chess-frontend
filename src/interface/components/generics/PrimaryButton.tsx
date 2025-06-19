@@ -22,10 +22,10 @@ const PrimaryButton = ({
   type = 'button',
 }: PrimaryButtonProps): ReactElement => {
   const defaultOptions = {
-    default: `font-sans rounded-md px-[20px] whitespace-nowrap`,
-    textSize: 'text-xs md:text-lg',
-    height: 'h-[40px]',
-    fontWeight: 'font-bold',
+    default: `font-sans rounded-lg px-6 py-2 whitespace-nowrap transition-all duration-200`,
+    textSize: 'text-base md:text-lg',
+    height: 'h-[44px]',
+    fontWeight: 'font-semibold',
     width: 'w-full',
     additional: '',
   };
@@ -41,8 +41,8 @@ const PrimaryButton = ({
       onClick={onClick}
       onTouchEnd={onTouchEnd}
       className={`${classes} ${
-        haveShadow ? `shadow-gray-600 hover:shadow-gray-900-hover` : ''
-      } bg-secondary-lighter hover:bg-secondary-darker text-primary focus:outline-none`}
+        haveShadow ? `shadow-lg hover:shadow-xl` : ''
+      } bg-accent text-white hover:bg-accent-darker focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2`}
     >
       {content}
     </button>
@@ -50,7 +50,7 @@ const PrimaryButton = ({
     <button
       type={type}
       disabled
-      className={`${classes} cursor-not-allowed bg-disable-grey-100 text-default-grey-300 focus:outline-none`}
+      className={`${classes} cursor-not-allowed bg-gray-200 text-gray-400 focus:outline-none`}
     >
       {content}
     </button>

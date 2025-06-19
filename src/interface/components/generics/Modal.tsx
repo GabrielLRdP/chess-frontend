@@ -5,23 +5,21 @@ const Modal = ({
   children,
   isOpen,
   setIsOpen,
-  fullSize,
   backgroundOpacity = 0,
   closeButton = false,
 }: ModalProps): ReactElement | null => {
-  const size = fullSize ? 'w-full h-screen' : '';
-  const opacity = `rgba(0, 0, 0, ${backgroundOpacity / 100})`;
-
   if (!isOpen) {
     return null;
   }
 
   return (
     <div
-      className={`${size} absolute z-50 flex justify-center items-center`}
-      style={{ backgroundColor: `${opacity}` }}
+      className={`fixed inset-0 z-50 flex justify-center items-center transition-all duration-200`}
+      style={{
+        backgroundColor: `rgba(0,0,0,${backgroundOpacity / 100 || 0.5})`,
+      }}
     >
-      <div className='bg-secondary rounded-md min-w-[40%] min-h-[30%] p-10 relative'>
+      <div className='bg-secondary rounded-xl min-w-[340px] min-h-[30%] p-8 shadow-2xl relative flex flex-col items-center'>
         {closeButton && <CloseButton onClick={() => setIsOpen(false)} />}
         {children}
       </div>
@@ -34,7 +32,6 @@ export default Modal;
 type ModalProps = PropsWithChildren<{
   isOpen: boolean;
   setIsOpen: (val: boolean) => void;
-  fullSize?: boolean;
   backgroundOpacity?: number;
   closeButton?: boolean;
 }>;

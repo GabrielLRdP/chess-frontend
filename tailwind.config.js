@@ -4,29 +4,30 @@ export const theme = {
   extend: {
     colors: {
       primary: {
-        lighter: '#2A567D', // Version plus claire de #0D3B66
-        DEFAULT: '#0D3B66', // Couleur principale
-        darker: '#092A4D', // Version plus foncée de #0D3B66
+        lighter: '#3A506B', // Light blue-gray
+        DEFAULT: '#1C2541', // Main deep blue-gray
+        darker: '#0B132B', // Very dark blue-gray
       },
       secondary: {
-        lighter: '#FCF5DF', // Version plus claire de #FAF0CA
-        DEFAULT: '#FAF0CA', // Couleur principale
-        darker: '#D7D0A8', // Version plus foncée de #FAF0CA
+        lighter: '#F5F6FA', // Lightest gray
+        DEFAULT: '#D9DBE1', // Cool gray
+        darker: '#A3A8B8', // Medium gray
       },
-      tertiary: {
-        lighter: '#F8E1A2', // Version plus claire de #F4D35E
-        DEFAULT: '#F4D35E', // Couleur principale
-        darker: '#C7AA4B', // Version plus foncée de #F4D35E
+      accent: {
+        lighter: '#5BC0BE', // Light teal
+        DEFAULT: '#3AAFA9', // Main teal
+        darker: '#247672', // Dark teal
       },
-      quaternary: {
-        lighter: '#F3B589', // Version plus claire de #EE964B
-        DEFAULT: '#EE964B', // Couleur principale
-        darker: '#C07839', // Version plus foncée de #EE964B
+      neutral: {
+        lighter: '#F8F9FB', // Near white
+        DEFAULT: '#E5E7EB', // Light neutral
+        darker: '#6B7280', // Dark neutral
       },
-      quinary: {
-        lighter: '#FA7B62', // Version plus claire de #F95738
-        DEFAULT: '#F95738', // Couleur principale
-        darker: '#C7432A', // Version plus foncée de #F95738
+      success: {
+        DEFAULT: '#27ae60',
+      },
+      danger: {
+        DEFAULT: '#e74c3c',
       },
     },
   },

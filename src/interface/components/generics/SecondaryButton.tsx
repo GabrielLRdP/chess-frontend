@@ -22,10 +22,11 @@ const SecondaryButton = ({
   type = 'button',
 }: PrimaryButtonProps): ReactElement => {
   const defaultOptions = {
-    default: 'font-sans rounded-md px-[20px] whitespace-nowrap',
-    textSize: 'text-14-14',
-    height: 'h-[40px]',
-    fontWeight: 'font-bold',
+    default:
+      'font-sans rounded-lg px-6 py-2 whitespace-nowrap transition-all duration-200',
+    textSize: 'text-base md:text-lg',
+    height: 'h-[44px]',
+    fontWeight: 'font-semibold',
     width: 'w-full',
     additional: '',
   };
@@ -42,8 +43,8 @@ const SecondaryButton = ({
       onClick={onClick}
       onTouchEnd={onTouchEnd}
       className={`${classes} ${
-        haveShadow ? 'shadow-gray-600 hover:shadow-gray-900' : ''
-      } hover:border-quinary-darker hover:text-quinary-darker hover:shadow-quinary-darker text-quinary border-2 border-quinary`}
+        haveShadow ? 'shadow-md hover:shadow-lg' : ''
+      } border-2 border-primary text-primary hover:bg-primary hover:text-secondary focus:outline-none focus:ring-2 focus:ring-primary-lighter focus:ring-offset-2`}
     >
       {content}
     </button>
@@ -51,7 +52,7 @@ const SecondaryButton = ({
     <button
       type={type}
       disabled
-      className={`${classes} cursor-not-allowed bg-disable-grey-100 text-default-grey-300 focus:outline-none`}
+      className={`${classes} cursor-not-allowed bg-gray-200 text-gray-400 focus:outline-none`}
     >
       {content}
     </button>

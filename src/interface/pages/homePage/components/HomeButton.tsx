@@ -6,8 +6,8 @@ const HomeButton = ({ label, onClick }: HomeButtonProps): ReactElement => {
 
   return (
     <button
-      className={`bg-white bg-opacity-70 hover:bg-opacity-100 rounded-xl p-10  px-28 font-bold cursor-pointer transition-all duration-300 ${
-        isMobile ? 'w-[100%]' : 'max-w-fit'
+      className={`bg-accent hover:bg-accent-darker rounded-xl py-4 px-8 font-bold cursor-pointer transition-all duration-300 flex-1 min-w-[140px] max-w-xs mx-auto text-center shadow-md focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 text-white ${
+        isMobile ? 'w-full' : ''
       }`}
       onClick={onClick}
     >

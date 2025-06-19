@@ -14,14 +14,14 @@ const GenericToast = (props: ToastProps) => {
   });
 
   return (
-    <div className='flex rounded-lg bg-secondary shadow-lg ring-1 ring-black/5 w-full md:max-w-[364px] items-center p-4'>
+    <div className='flex rounded-xl border-l-4 border-primary bg-secondary shadow-2xl ring-1 ring-black/10 w-full md:max-w-[364px] items-center p-5 gap-4 animate-fade-in'>
       <div className='flex flex-1 items-center'>
         <div className='w-full'>
-          <p className='text-sm font-medium text-gray-900'>{title}</p>
-          <p className='mt-1 text-sm text-gray-500'>{description}</p>
+          <p className='text-base font-extrabold text-primary mb-1'>{title}</p>
+          <p className='text-sm text-gray-700'>{description}</p>
         </div>
       </div>
-      {props.buttons && buttonsElements}
+      {props.buttons && <div className='flex gap-2'>{buttonsElements}</div>}
     </div>
   );
 };

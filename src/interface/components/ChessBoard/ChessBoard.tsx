@@ -46,7 +46,7 @@ const ChessBoard = ({ children }: PropsWithChildren): ReactElement => {
       {isModalOpen && <PromotionModal />}
       <InfoSection color={side} key={Math.random()} />
 
-      <section className='w-full aspect-square flex flex-wrap border-[6px] border-[#4b3621] shadow-lg box-content overflow-hidden'>
+      <section className='w-full aspect-square flex flex-wrap border-[6px] border-primary-darker rounded-2xl shadow-2xl box-content overflow-hidden bg-gradient-to-br from-secondary-lighter via-secondary to-tertiary-lighter'>
         {caseList}
       </section>
 

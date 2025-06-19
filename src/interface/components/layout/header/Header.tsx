@@ -12,13 +12,9 @@ const Header = (): ReactElement => {
       <HeaderContextProvider>
         <SignUpModal />
         <LoginModal />
-        <header
-          className='p-5 px-7 flex justify-between items-center shadow-[0_3px_8px_rgba(0,0,0,0.25)]
-
-          lg:px-8 md:px[50px] sm:px[25px] relative bg-[rgb(27, 27, 27)] z-30'
-        >
+        <header className='p-5 px-7 flex justify-between items-center shadow-[0_4px_16px_rgba(0,0,0,0.30)] bg-gradient-to-r from-primary-darker via-primary to-primary-lighter lg:px-8 md:px[50px] sm:px[25px] relative z-30'>
           <h1
-            className='text-white font-bold text-2xl lg:text-4xl   flex-5'
+            className='text-white font-extrabold text-2xl lg:text-4xl flex-5 tracking-tight transition-colors duration-200 cursor-pointer hover:text-secondary-lighter'
             onClick={() => {
               navigate('/');
             }}

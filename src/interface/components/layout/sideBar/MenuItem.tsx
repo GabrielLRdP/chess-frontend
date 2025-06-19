@@ -13,19 +13,21 @@ const MenuItem = ({
 
   return (
     <li
-      className='flex items-center justify-center gap-3 w-[100%] max-h-10 p-2 cursor-pointer relative transition-transform duration-100 ease-out hover:-translate-y-1 active:translate-y-0'
+      className={`flex items-center justify-center gap-3 w-full max-h-12 p-3 cursor-pointer relative transition-all duration-200 rounded-xl group hover:bg-tertiary hover:shadow-lg active:scale-95 ${
+        isExpanded ? 'mx-2' : ''
+      }`}
       onClick={() => navigate(path)}
     >
       <FontAwesomeIcon
         icon={icon}
-        className='text-secondary-lighter'
+        className='text-secondary-lighter group-hover:text-primary-darker transition-colors duration-200 drop-shadow-md'
         size='xl'
       />
       <div
-        className={`text-secondary-lighter font-bold text-xl h-full transition-all max-h-[24px] transform ${
+        className={`text-secondary-lighter font-bold text-xl h-full transition-all max-h-[24px] transform group-hover:text-primary-darker ${
           isExpanded
             ? 'duration-500 opacity-100 translate-x-0'
-            : ' duration-100 opacity-0 -translate-x-4 absolute'
+            : 'duration-100 opacity-0 -translate-x-4 absolute'
         } select-none`}
       >
         {label}

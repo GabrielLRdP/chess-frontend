@@ -7,7 +7,7 @@ import SwitchSideButton from './components/SwitchSideButton';
 const FreeChessBoardPage = (): ReactElement => {
   return (
     <ChessBoardProvider>
-      <div className='px-7 flex justify-center items-center'>
+      <div className='px-7 flex justify-center items-center min-h-screen bg-primary'>
         <ChessBoard>
           <div className='flex w-full space-x-4 h-[80%] pb-28'>
             <NewGameButton />

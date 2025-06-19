@@ -56,17 +56,20 @@ const LoginForm = () => {
   return loading ? (
     <Spinner />
   ) : (
-    <form onSubmit={handleSubmit}>
-      <h2 className='text-2xl text-primary font-bold mb-4 text-center'>
+    <form
+      onSubmit={handleSubmit}
+      className='bg-secondary-lighter rounded-2xl shadow-xl px-8 py-10 w-full max-w-md mx-auto flex flex-col gap-2'
+    >
+      <h2 className='text-2xl text-primary font-extrabold mb-4 text-center tracking-tight'>
         Connectez-vous
       </h2>
 
-      {error && <p className='text-red-500 mb-4'>{error}</p>}
+      {error && <p className='text-red-500 mb-4 text-center'>{error}</p>}
 
       <div className='mb-4'>
         <label
           htmlFor='userName'
-          className='block font-medium mb-2 text-primary'
+          className='block font-semibold mb-2 text-primary'
         >
           Pseudo
         </label>
@@ -77,14 +80,14 @@ const LoginForm = () => {
           autoComplete='username'
           value={formData.userName}
           onChange={handleChange}
-          className='w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary text-primary bg-secondary-lighter'
+          className='w-full p-3 border-2 border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-primary bg-white transition-all duration-200 shadow-sm'
         />
       </div>
 
       <div className='mb-4'>
         <label
           htmlFor='password'
-          className='block font-medium mb-2 text-primary'
+          className='block font-semibold mb-2 text-primary'
         >
           Mot de passe
         </label>
@@ -94,12 +97,12 @@ const LoginForm = () => {
           name='password'
           value={formData.password}
           onChange={handleChange}
-          className='w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary text-primary bg-secondary-lighter'
+          className='w-full p-3 border-2 border-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-primary bg-white transition-all duration-200 shadow-sm'
         />
       </div>
       <button
         type='submit'
-        className='w-full bg-primary text-secondary-darker font-extrabold py-2 rounded hover:bg-primary-darker mt-6'
+        className='w-full bg-primary text-secondary-darker font-extrabold py-3 rounded-lg hover:bg-primary-darker transition-all duration-200 shadow-md mt-6 focus:outline-none focus:ring-2 focus:ring-primary-lighter focus:ring-offset-2'
       >
         Connexion
       </button>

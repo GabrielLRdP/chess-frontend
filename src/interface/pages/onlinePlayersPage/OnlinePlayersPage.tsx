@@ -30,29 +30,33 @@ const OnlinePlayersPage = (): ReactElement => {
   }, [socketService, userData]);
 
   return (
-    <section className='w-[50%] m-auto mt-9 mb-9 text-secondary'>
-      <h2 className='text-white font-bold text-2xl mb-12'>Joueurs connectés</h2>
+    <div className='min-h-screen bg-primary flex flex-col'>
+      <section className='w-[50%] m-auto mt-9 mb-9 text-secondary'>
+        <h2 className='text-white font-bold text-2xl mb-12'>
+          Joueurs connectés
+        </h2>
 
-      {!userData ? (
-        <div className='text-center text-secondary-lighter italic mt-36'>
-          Veuillez vous connecter pour voir les joueurs en ligne.
-        </div>
-      ) : connectedUsers.length > 0 ? (
-        <div className='flex flex-col gap-3'>
-          {connectedUsers.map((u) => (
-            <PlayerCard
-              key={u.userId}
-              userName={u.userName}
-              userId={u.userId}
-            />
-          ))}
-        </div>
-      ) : (
-        <div className='text-center text-white italic mt-36'>
-          Aucun joueur en ligne pour le moment…
-        </div>
-      )}
-    </section>
+        {!userData ? (
+          <div className='text-center text-secondary-lighter italic mt-36'>
+            Veuillez vous connecter pour voir les joueurs en ligne.
+          </div>
+        ) : connectedUsers.length > 0 ? (
+          <div className='flex flex-col gap-3'>
+            {connectedUsers.map((u) => (
+              <PlayerCard
+                key={u.userId}
+                userName={u.userName}
+                userId={u.userId}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className='text-center text-white italic mt-36'>
+            Aucun joueur en ligne pour le moment…
+          </div>
+        )}
+      </section>
+    </div>
   );
 };
 
