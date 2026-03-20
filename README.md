@@ -69,5 +69,3 @@ This chess game was an opportunity to:
  - Practice clean architecture, decoupling UI from game logic
 
  - Explore Zustand as a lightweight and intuitive state manager
-
-test
