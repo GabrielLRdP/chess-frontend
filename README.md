@@ -70,3 +70,4 @@ This chess game was an opportunity to:
 
  - Explore Zustand as a lightweight and intuitive state manager
 
+test
